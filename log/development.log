@@ -137,3 +137,135 @@ Migrating to CreateGames (20200302201633)
   [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Phil's Phabulous Phantasy Phactory"], ["location", "5th street by that old tree"], ["description", "It's...definitely a place"], ["created_at", "2020-03-02 21:19:54.120358"], ["updated_at", "2020-03-02 21:19:54.120358"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.3ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lizard's Lair"], ["location", "Southeast-northwest of town, just past the barn"], ["description", "Significantly smaller than a dragon's lair"], ["created_at", "2020-03-02 21:19:54.139471"], ["updated_at", "2020-03-02 21:19:54.139471"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.3ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Billy-Bob's Gaming Emporeum"], ["location", "Not there, over here"], ["description", "Board games in the front, fishin' supplies out back"], ["created_at", "2020-03-02 21:19:54.143970"], ["updated_at", "2020-03-02 21:19:54.143970"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mStore Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "stores" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStores (20200302200911)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "stores" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302200911"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameTables (20200302201117)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "game_tables" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "store_id" integer, "table_name" varchar, "seats_available" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201117"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameSessions (20200302201302)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "game_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "game_table_id" integer, "game_id" integer, "session_name" varchar, "player_counter" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "game_sessions_players" ("game_session_id" integer, "player_id" integer)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_game_sessions_players_on_game_session_id" ON "game_sessions_players" ("game_session_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_game_sessions_players_on_player_id" ON "game_sessions_players" ("player_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201302"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePlayers (20200302201450)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "players" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bio" varchar, "age" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201450"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGames (20200302201633)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "store_id" integer, "name" varchar, "description" varchar, "min_players" integer, "max_players" integer, "min_playtime" integer, "max_playtime" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201633"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-02 21:35:35.420382"], ["updated_at", "2020-03-02 21:35:35.420382"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Phil's Phabulous Phantasy Phactory"], ["location", "5th street by that old tree"], ["description", "It's...definitely a place"], ["created_at", "2020-03-02 21:35:41.244399"], ["updated_at", "2020-03-02 21:35:41.244399"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phear The Reaper"], ["seats_available", 6], ["created_at", "2020-03-02 21:35:41.272380"], ["updated_at", "2020-03-02 21:35:41.272380"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phorget Your worries"], ["seats_available", 6], ["created_at", "2020-03-02 21:35:41.277944"], ["updated_at", "2020-03-02 21:35:41.277944"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phun Phor All"], ["seats_available", 8], ["created_at", "2020-03-02 21:35:41.285584"], ["updated_at", "2020-03-02 21:35:41.285584"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.2ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phree Phor All"], ["seats_available", 4], ["created_at", "2020-03-02 21:35:41.290466"], ["updated_at", "2020-03-02 21:35:41.290466"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phool's Gold"], ["seats_available", 7], ["created_at", "2020-03-02 21:35:41.306632"], ["updated_at", "2020-03-02 21:35:41.306632"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.3ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lizard's Lair"], ["location", "Southeast-northwest of town, just past the barn"], ["description", "Significantly smaller than a dragon's lair"], ["created_at", "2020-03-02 21:35:41.309791"], ["updated_at", "2020-03-02 21:35:41.309791"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.2ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 1"], ["seats_available", 4], ["created_at", "2020-03-02 21:35:41.315288"], ["updated_at", "2020-03-02 21:35:41.315288"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 2"], ["seats_available", 4], ["created_at", "2020-03-02 21:35:41.320823"], ["updated_at", "2020-03-02 21:35:41.320823"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "The Great Beyond"], ["seats_available", 8], ["created_at", "2020-03-02 21:35:41.325907"], ["updated_at", "2020-03-02 21:35:41.325907"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.3ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Billy-Bob's Gaming Emporeum"], ["location", "Not there, over here"], ["description", "Board games in the front, fishin' supplies out back"], ["created_at", "2020-03-02 21:35:41.328750"], ["updated_at", "2020-03-02 21:35:41.328750"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Fish Deboning Table"], ["seats_available", 4], ["created_at", "2020-03-02 21:35:41.334707"], ["updated_at", "2020-03-02 21:35:41.334707"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.2ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Master Baiting Station"], ["seats_available", 4], ["created_at", "2020-03-02 21:35:41.338712"], ["updated_at", "2020-03-02 21:35:41.338712"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "The Gross Table"], ["seats_available", 4], ["created_at", "2020-03-02 21:35:41.342685"], ["updated_at", "2020-03-02 21:35:41.342685"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mStore Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "stores" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" ORDER BY "stores"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" ORDER BY "stores"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" ORDER BY "stores"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mGameTable Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "game_tables" WHERE "game_tables"."store_id" = ? LIMIT ?[0m  [["store_id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."store_id" = ?[0m  [["store_id", 1]]
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" ORDER BY "stores"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mGameTable Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "game_tables" WHERE "game_tables"."store_id" = ? LIMIT ?[0m  [["store_id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."store_id" = ?[0m  [["store_id", 2]]
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" ORDER BY "stores"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 2]]
+  [1m[36mGameTable Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "game_tables" WHERE "game_tables"."store_id" = ? LIMIT ?[0m  [["store_id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."store_id" = ?[0m  [["store_id", 3]]
