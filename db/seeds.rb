@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Store.create(name: "Phil's Phabulous Phantasy Phactory", location: "5th street by that old tree", description: "It's...definitely a place")
