@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_201633) do
     t.integer "max_players"
     t.integer "min_playtime"
     t.integer "max_playtime"
+    t.string "link_url"
+    t.string "photo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
