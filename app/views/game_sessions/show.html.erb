@@ -9,4 +9,7 @@
 <% @game_session.players.each do |player|%>
     <li> <%= player.name %> </li>
 <% end %>
+<br>
+<br>
+<%=  button_to "End this game session", game_session_path(@game_session), method: :delete %>
 </ul>

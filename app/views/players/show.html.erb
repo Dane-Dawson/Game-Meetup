@@ -7,4 +7,7 @@
 <br>
 <h5> Player Age: </h5>
 <%= @player.age %>
+<br>
+<br>
 
+<%= button_to "Remove this player right now!", player_path(@player), method: :delete %>
