@@ -1095,3 +1095,312 @@ Processing by GamesController#index as HTML
 Completed 200 OK in 17ms (Views: 14.6ms | ActiveRecord: 0.3ms | Allocations: 5290)
 
 
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:18:59 -0600
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1979)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.0ms | Allocations: 4285)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1: <h1>GameSessions</h1>
+    2: 
+    3: <%= form_for (@game_sessions) do |f| %>
+    4: 
+    5:     <%= f.label :games %>
+    6:     <%= f.collection_select :games, Game.all, :id, :name %>
+  
+app/views/game_sessions/new.html.erb:3
+Started GET "/rails/info/routes" for ::1 at 2020-03-03 09:28:20 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::InfoController#routes as HTML
+  Rendering /Users/matthewbritt/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.1/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /Users/matthewbritt/.rvm/gems/ruby-2.6.1/gems/actionpack-6.0.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [51 times] (Duration: 27.5ms | Allocations: 7049)
+  Rendered /Users/matthewbritt/.rvm/gems/ruby-2.6.1/gems/actionpack-6.0.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 5.5ms | Allocations: 928)
+  Rendered /Users/matthewbritt/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.1/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 38.0ms | Allocations: 12022)
+Completed 200 OK in 44ms (Views: 40.2ms | ActiveRecord: 0.0ms | Allocations: 14004)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 09:28:47 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 82)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 114ms (Views: 85.4ms | ActiveRecord: 0.0ms | Allocations: 19259)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:28:57 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1030)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.9ms | Allocations: 6551)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1: <h1>GameSessions</h1>
+    2: 
+    3: <%= form_for (@game_sessions) do |f| %>
+    4: 
+    5:     <%= f.label :games %>
+    6:     <%= f.collection_select :games, Game.all, :id, :name %>
+  
+app/views/game_sessions/new.html.erb:3
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:31:15 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 40.6ms | Allocations: 8588)
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 0.0ms | Allocations: 9945)
+
+
+  
+ActionView::Template::Error (undefined method `games' for #<GameSession:0x00007f90554c9a68>
+Did you mean?  game
+               game=):
+    3: <%= form_for (@game_session) do |f| %>
+    4: 
+    5:     <%= f.label :games %>
+    6:     <%= f.collection_select :games, Game.all, :id, :name %>
+    7: 
+    8:     <%= submit %>
+    9: <% end %>
+  
+app/views/game_sessions/new.html.erb:6
+app/views/game_sessions/new.html.erb:3
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:31:43 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 426.4ms | Allocations: 156479)
+Completed 500 Internal Server Error in 446ms (ActiveRecord: 1.0ms | Allocations: 157849)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `submit' for #<#<Class:0x00007f905710af88>:0x00007f90572a9358>
+Did you mean?  submit_tag):
+    5:     <%= f.label :games %>
+    6:     <%= f.collection_select :game_id, Game.all, :id, :name %>
+    7: 
+    8:     <%= submit %>
+    9: <% end %>
+  
+app/views/game_sessions/new.html.erb:8
+app/views/game_sessions/new.html.erb:3
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:32:01 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1853)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 30ms (Views: 27.9ms | ActiveRecord: 0.3ms | Allocations: 7085)
+
+
+  [1m[36mGameTable Load (0.8ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mGameTable Load (0.4ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" ORDER BY "game_tables"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" ORDER BY "game_tables"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mGameTable Load (0.4ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" ORDER BY "game_tables"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:42:51 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 30.6ms | Allocations: 12464)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 1.1ms | Allocations: 13822)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<GameTable:0x00007f905554a3e8>):
+     6:     <%= f.collection_select :game_id, Game.all, :id, :name %>
+     7: 
+     8:     <%= f.label :game_tables %>
+     9:     <%= f.collection_select :game_table_id, GameTable.all, :id, :name %>
+    10: 
+    11: 
+    12: 
+  
+app/views/game_sessions/new.html.erb:9
+app/views/game_sessions/new.html.erb:3
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:44:24 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 8.9ms | Allocations: 3042)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 32.9ms | ActiveRecord: 0.6ms | Allocations: 8276)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:44:39 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 7.1ms | Allocations: 3040)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 17.2ms | ActiveRecord: 0.5ms | Allocations: 8269)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:44:52 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 22.5ms | Allocations: 3053)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 32.2ms | ActiveRecord: 0.4ms | Allocations: 8290)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:45:09 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 6.5ms | Allocations: 3036)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 16.2ms | ActiveRecord: 0.6ms | Allocations: 8269)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:45:20 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 6.4ms | Allocations: 3037)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 16.9ms | ActiveRecord: 0.5ms | Allocations: 8262)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:45:37 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 6.3ms | Allocations: 3033)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 18ms (Views: 16.3ms | ActiveRecord: 0.4ms | Allocations: 8253)
+
+
+Started POST "/game_sessions" for ::1 at 2020-03-03 09:46:07 -0600
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"ineH/Pl5AqJZmEwy303Xz8zpRMoNpny3dEpTitvhckxgsHWU9rtDbNjDIjFgXivtJwPViDF4/ZK5cfnT7rlCAQ==", "game_session"=>{"game_id"=>"12", "game_table_id"=>"10"}, "commit"=>"Create Game session"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameTable Load (0.4ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameSession Create (1.6ms)[0m  [1m[32mINSERT INTO "game_sessions" ("game_table_id", "game_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_table_id", 10], ["game_id", 12], ["created_at", "2020-03-03 15:46:07.416461"], ["updated_at", "2020-03-03 15:46:07.416461"]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+Redirected to http://localhost:3000/game_sessions/1
+Completed 302 Found in 45ms (ActiveRecord: 5.0ms | Allocations: 7765)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 09:46:07 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 86)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 8.5ms | ActiveRecord: 0.3ms | Allocations: 5109)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:50:44 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 33.0ms | Allocations: 10553)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 53ms (Views: 50.0ms | ActiveRecord: 1.3ms | Allocations: 15690)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:52:22 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 46.1ms | Allocations: 12235)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 66ms (Views: 63.5ms | ActiveRecord: 1.3ms | Allocations: 17376)
+
+
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlayer Create (0.8ms)[0m  [1m[32mINSERT INTO "players" ("name", "bio", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Matt"], ["bio", "not really"], ["age", 45], ["created_at", "2020-03-03 15:54:13.714767"], ["updated_at", "2020-03-03 15:54:13.714767"]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 09:54:26 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 32.4ms | Allocations: 10264)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 55ms (Views: 52.6ms | ActiveRecord: 0.6ms | Allocations: 15396)
+
+
+Started POST "/game_sessions" for ::1 at 2020-03-03 09:54:50 -0600
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"RMYxXjQXMEgUoVCYe6jV1FAoqzZF+LkP/zTbBCsZ6OmuAcM2O9VxhpX6PpvEuyn2u8I6dHkmOCoyD3FdHkHYpA==", "game_session"=>{"game_id"=>"1", "game_table_id"=>"1", "player_ids"=>["", "1"]}, "commit"=>"Create Game session"}
+[31mUnpermitted parameter: :player_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameSession Create (1.4ms)[0m  [1m[32mINSERT INTO "game_sessions" ("game_table_id", "game_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_table_id", 1], ["game_id", 1], ["created_at", "2020-03-03 15:54:50.976370"], ["updated_at", "2020-03-03 15:54:50.976370"]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+Redirected to http://localhost:3000/game_sessions/2
+Completed 302 Found in 17ms (ActiveRecord: 3.1ms | Allocations: 4714)
+
+
+Started GET "/game_sessions/2" for ::1 at 2020-03-03 09:54:50 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mGameSession Load (0.4ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 78)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 15.8ms | ActiveRecord: 0.4ms | Allocations: 4969)
+
+
