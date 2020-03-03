@@ -1,7 +1,18 @@
-<h1>All Games</h1>
+<h1>Stores and their games</h1>
 <div>
-    <% @games.each do |game| %>
-        <%= link_to game.name, game_path(game) %><br>
+
+    <%# <% @games.each do |game| %>
+        <%# <%= link_to game.name, game_path(game) %>
+    <%# <% end %>
+
+    <% Store.all.each do |store|%>
+        <h3><%= link_to store.name, store_path(store)%></h3>
+            <ul>
+            <% store.games.each do |game| %>
+                <li><p><%= link_to game.name, game_path(game) %><p></li>
+            <% end %>
+            </ul>
+
     <% end %>
 </div>
 

@@ -2419,3 +2419,341 @@ Processing by GamesController#index as HTML
 Completed 200 OK in 13ms (Views: 10.8ms | ActiveRecord: 0.4ms | Allocations: 5651)
 
 
+Started GET "/stores" for ::1 at 2020-03-03 10:46:35 -0600
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/stores/index.html.erb:3
+  Rendered stores/index.html.erb within layouts/application (Duration: 7.7ms | Allocations: 5107)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 53ms (Views: 37.6ms | ActiveRecord: 0.9ms | Allocations: 18458)
+
+
+Started GET "/stores/1" for ::1 at 2020-03-03 10:46:53 -0600
+Processing by StoresController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/stores_controller.rb:7:in `show'
+  Rendering stores/show.html.erb within layouts/application
+  [1m[36mGame Load (1.0ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/stores/show.html.erb:9
+  Rendered stores/show.html.erb within layouts/application (Duration: 31.5ms | Allocations: 13301)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 45ms (Views: 36.7ms | ActiveRecord: 2.0ms | Allocations: 18548)
+
+
+Started GET "/games/4" for ::1 at 2020-03-03 10:46:56 -0600
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:7:in `show'
+  Rendering games/show.html.erb within layouts/application
+  Rendered games/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 338)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 31.4ms | ActiveRecord: 0.5ms | Allocations: 5769)
+
+
+Started GET "/players" for ::1 at 2020-03-03 10:47:20 -0600
+Processing by PlayersController#index as HTML
+  Rendering players/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.6ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/players/index.html.erb:3
+  Rendered players/index.html.erb within layouts/application (Duration: 9.9ms | Allocations: 4502)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 30ms (Views: 18.3ms | ActiveRecord: 1.4ms | Allocations: 12855)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 10:47:27 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.5ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 31.0ms | Allocations: 14615)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 53ms (Views: 36.1ms | ActiveRecord: 2.7ms | Allocations: 26256)
+
+
+Started POST "/game_sessions" for ::1 at 2020-03-03 10:47:44 -0600
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"26QY2hj53PrBZqHOU9JaR1K/Crsh6useOJypDb3eg5Rn4GBS7NQAejWKPL2Pedw6breOKU6NZ7ZKQN3M0pcJ4Q==", "game_session"=>{"game_id"=>"8", "game_table_id"=>"1", "player_ids"=>["", "1"]}, "commit"=>"Create Game session"}
+[31mUnpermitted parameter: :player_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameSession Create (1.6ms)[0m  [1m[32mINSERT INTO "game_sessions" ("game_table_id", "game_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_table_id", 1], ["game_id", 8], ["created_at", "2020-03-03 16:47:44.140022"], ["updated_at", "2020-03-03 16:47:44.140022"]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+Redirected to http://localhost:3000/game_sessions/3
+Completed 302 Found in 14ms (ActiveRecord: 3.1ms | Allocations: 6370)
+
+
+Started GET "/game_sessions/3" for ::1 at 2020-03-03 10:47:44 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 81)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.2ms | Allocations: 5101)
+
+
+Started GET "/games" for ::1 at 2020-03-03 10:47:48 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/games/index.html.erb:3
+  Rendered games/index.html.erb within layouts/application (Duration: 6.3ms | Allocations: 1244)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 22ms (Views: 20.1ms | ActiveRecord: 0.4ms | Allocations: 5631)
+
+
+Started GET "/stores" for ::1 at 2020-03-03 10:49:20 -0600
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/stores/index.html.erb:3
+  Rendered stores/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 690)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.2ms | Allocations: 4944)
+
+
+Started GET "/games" for ::1 at 2020-03-03 10:50:04 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/games/index.html.erb:3
+  Rendered games/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1090)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 11ms (Views: 10.3ms | ActiveRecord: 0.3ms | Allocations: 5325)
+
+
+Started GET "/stores" for ::1 at 2020-03-03 10:50:06 -0600
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/stores/index.html.erb:3
+  Rendered stores/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 685)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 10.7ms | ActiveRecord: 0.2ms | Allocations: 4925)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 10:50:08 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 9.2ms | Allocations: 4052)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 18.3ms | ActiveRecord: 0.6ms | Allocations: 8309)
+
+
+Started GET "/games" for ::1 at 2020-03-03 10:50:11 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/games/index.html.erb:3
+  Rendered games/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1090)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 13ms (Views: 12.2ms | ActiveRecord: 0.2ms | Allocations: 5328)
+
+
+Started GET "/games" for ::1 at 2020-03-03 10:55:18 -0600
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/games/index.html.erb:3
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:7
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:9
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:9
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:9
+  Rendered games/index.html.erb within layouts/application (Duration: 41.1ms | Allocations: 22325)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 83ms (Views: 65.5ms | ActiveRecord: 1.9ms | Allocations: 33911)
+
+
+Started GET "/games" for ::1 at 2020-03-03 10:57:31 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:8
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:10
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:10
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:10
+  Rendered games/index.html.erb within layouts/application (Duration: 8.8ms | Allocations: 3561)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 43.0ms | ActiveRecord: 0.8ms | Allocations: 8823)
+
+
+Started GET "/games" for ::1 at 2020-03-03 10:57:59 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:8
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:10
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:10
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:10
+  Rendered games/index.html.erb within layouts/application (Duration: 10.8ms | Allocations: 3541)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 20.1ms | ActiveRecord: 1.2ms | Allocations: 8807)
+
+
+Started GET "/games/6" for ::1 at 2020-03-03 11:01:02 -0600
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mGame Load (0.6ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:7:in `show'
+  Rendering games/show.html.erb within layouts/application
+  Rendered games/show.html.erb within layouts/application (Duration: 1.9ms | Allocations: 337)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 16ms (Views: 10.6ms | ActiveRecord: 0.6ms | Allocations: 5365)
+
+
+Started GET "/stores/2" for ::1 at 2020-03-03 11:01:04 -0600
+Processing by StoresController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/stores_controller.rb:7:in `show'
+  Rendering stores/show.html.erb within layouts/application
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/stores/show.html.erb:9
+  Rendered stores/show.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1100)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 9.9ms | ActiveRecord: 0.3ms | Allocations: 6512)
+
+
+Started GET "/games/7" for ::1 at 2020-03-03 11:01:06 -0600
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:7:in `show'
+  Rendering games/show.html.erb within layouts/application
+  Rendered games/show.html.erb within layouts/application (Duration: 0.5ms | Allocations: 94)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 17ms (Views: 13.1ms | ActiveRecord: 0.3ms | Allocations: 4834)
+
+
+Started GET "/games" for ::1 at 2020-03-03 11:01:59 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:8
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:11
+  Rendered games/index.html.erb within layouts/application (Duration: 12.9ms | Allocations: 3532)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 22.6ms | ActiveRecord: 1.1ms | Allocations: 8782)
+
+
+Started GET "/games" for ::1 at 2020-03-03 11:02:41 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:8
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:11
+  Rendered games/index.html.erb within layouts/application (Duration: 10.6ms | Allocations: 3540)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 0.9ms | Allocations: 8802)
+
+
+Started GET "/stores" for ::1 at 2020-03-03 11:02:48 -0600
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/stores/index.html.erb:3
+  Rendered stores/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 838)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 22ms (Views: 19.9ms | ActiveRecord: 0.2ms | Allocations: 5662)
+
+
+Started GET "/games" for ::1 at 2020-03-03 11:02:51 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:8
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:11
+  Rendered games/index.html.erb within layouts/application (Duration: 22.7ms | Allocations: 3271)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 30.7ms | ActiveRecord: 0.7ms | Allocations: 7522)
+
+
+Started GET "/stores" for ::1 at 2020-03-03 11:02:53 -0600
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/stores/index.html.erb:3
+  Rendered stores/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 685)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.2ms | Allocations: 4928)
+
+
+Started GET "/players" for ::1 at 2020-03-03 11:02:56 -0600
+Processing by PlayersController#index as HTML
+  Rendering players/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.4ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/players/index.html.erb:3
+  Rendered players/index.html.erb within layouts/application (Duration: 7.6ms | Allocations: 4492)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 14.5ms | ActiveRecord: 0.9ms | Allocations: 12840)
+
+
+Started GET "/players" for ::1 at 2020-03-03 11:03:50 -0600
+Processing by PlayersController#index as HTML
+  Rendering players/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/players/index.html.erb:3
+  Rendered players/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 753)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 17ms (Views: 14.9ms | ActiveRecord: 0.3ms | Allocations: 6006)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 11:06:32 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 7.8ms | Allocations: 5102)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 18.4ms | ActiveRecord: 0.8ms | Allocations: 12884)
+
+
