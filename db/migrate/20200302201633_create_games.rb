@@ -8,6 +8,8 @@ class CreateGames < ActiveRecord::Migration[6.0]
       t.integer :max_players
       t.integer :min_playtime
       t.integer :max_playtime
+      t.string :link_url
+      t.string :photo_url
 
       t.timestamps
     end

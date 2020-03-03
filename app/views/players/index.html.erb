@@ -1,0 +1,12 @@
+<h3>Look at all these potential members of your next session!</h3>
+<div>
+<ul>
+    <% @players.each do |player| %>
+
+        <li><%= link_to player.name, player_path(player) %></li><br>
+    <% end %>
+</ul>
+</div>
+<br>
+<br>
+<%= link_to "Create new player", new_player_path%>

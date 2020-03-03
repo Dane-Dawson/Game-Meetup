@@ -1,0 +1,11 @@
+<h1><%= @store.name %></h1>
+<p>Located at:</p>
+<h3><%= @store.location %></h3>
+<h5> About our store: </h5>
+<p><%= @store.description %></p>
+<br>
+<br>
+<h4>Check out our inventory!</h4>
+<% @store.games.each do |g|%>
+<%= link_to g.name, game_path(g)%><br>
+<% end %>
