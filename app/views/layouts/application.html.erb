@@ -16,6 +16,11 @@
     <br>
     <footer>
     <p>Follow the links below to view participating stores, players, or inventory of games to choose to play! <p>
+    <% if logged_in? %>
+    <%= button_to "Logout", sessions_path, method: :delete%>
+    <% else %>
+    <%= button_to "Login Page", login_path, method: :get%>
+    <% end %>
     <p>||<%= link_to "View all games", games_path%> || <%= link_to "View all stores", stores_path%> || <%= link_to "View all players", players_path%> || <%= link_to "View Current Game Sessions", game_sessions_path %> ||</p>
     </footer>
   </body>

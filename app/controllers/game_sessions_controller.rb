@@ -15,17 +15,27 @@ class GameSessionsController < ApplicationController
     @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id])
 
     if @game_session.valid?
-      # player = Player.find(game_session_params[:player_ids]) if game_session_params[:player_ids]
-      # @game_session.players << player
       @game_session.save
-      redirect_to game_session_path(@game_session)
+      player = Player.find(session[:player_id])
+      @game_session.players << player
+      @game_session.save
+      redirect_to @game_session
     else
       @errors = @game_session.errors.full_messages
       render :new
     end
   end
 
+  def add_player
+    @game_session = GameSession.find(params[:id])
+    player = Player.find(session[:player_id])
+    @game_session.players << player
+    @game_session.save
+    redirect_to @game_session
+  end
+  
   def edit
+    @game_session = GameSession.find(params[:id])
   end
 
   def update

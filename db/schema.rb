@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_201633) do
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "bio"
+    t.string "password_digest"
     t.integer "age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
