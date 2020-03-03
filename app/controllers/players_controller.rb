@@ -13,8 +13,14 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new(player_params)
-    @player.save
-    redirect_to player_path(@player)
+    
+    if @player.valid?
+      @player.save
+      redirect_to player_path(@player)
+    else
+      @errors = @player.errors.full_messages
+      render :new
+    end
   end
 
   def edit

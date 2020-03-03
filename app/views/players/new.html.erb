@@ -1,5 +1,10 @@
 <h1>Players</h1>
-
+<p><% if @player.errors.any? %>
+<p> Ya done messed up, check yo'self </p>
+<% @player.errors.full_messages.each do |m|%>
+    <%= m %><br><br>
+    <% end %>
+ <% end %>
 <%= form_for @player do |f|%>
 <%= f.label :name%>
 <%= f.text_field :name%><br>

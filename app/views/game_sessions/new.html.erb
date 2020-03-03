@@ -1,5 +1,10 @@
 <h1>GameSessions</h1>
-
+<p><% if @game_session.errors.any? %>
+<p> Ya done messed up, check yo'self </p>
+<% @game_session.errors.full_messages.each do |m|%>
+    <%= m %><br><br>
+    <% end %>
+ <% end %>
 <%= form_for (@game_session) do |f| %>
     <%= f.label :session_name %><br>
     <%= f.text_field :session_name %><br>
