@@ -2095,3 +2095,1080 @@ Processing by GameSessionsController#show as HTML
 Completed 200 OK in 39ms (Views: 34.6ms | ActiveRecord: 1.3ms | Allocations: 7849)
 
 
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 12:28:25 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.4ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 12.4ms | Allocations: 4367)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 22.2ms | ActiveRecord: 1.2ms | Allocations: 8617)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 12:30:49 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 151.1ms | Allocations: 74067)
+Completed 500 Internal Server Error in 158ms (ActiveRecord: 0.0ms | Allocations: 75366)
+
+
+  
+ActionView::Template::Error (undefined method `text' for #<ActionView::Helpers::FormBuilder:0x00007ff67d254060>):
+    2: 
+    3: <%= form_for (@game_session) do |f| %>
+    4:     <%= f.label :session_name %><br>
+    5:     <%= f.text.field :session_name %><br>
+    6:     <br>
+    7:     <%= f.label :games %><br>
+    8:     <%= f.collection_select :game_id, Game.all, :id, :name %><br>
+  
+app/views/game_sessions/new.html.erb:5
+app/views/game_sessions/new.html.erb:3
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 12:31:16 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:8
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:11
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:14
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 11.7ms | Allocations: 4764)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 27ms (Views: 23.4ms | ActiveRecord: 0.9ms | Allocations: 10034)
+
+
+Started POST "/game_sessions" for ::1 at 2020-03-03 12:31:31 -0600
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"1vs/JlC3MZL7a14UHt/TafcSjR7B8OFnFqQGGWpKm9kYJ1B0aX8I363w3Zhv32YWgEjHT8rN+iTJbSGrJ958vA==", "game_session"=>{"session_name"=>"Let's Party!", "game_id"=>"5", "game_table_id"=>"8", "player_ids"=>["", "1", "2", "3"]}, "commit"=>"Create Game session"}
+[31mUnpermitted parameters: :session_name, :player_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameTable Load (0.9ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameSession Create (0.7ms)[0m  [1m[32mINSERT INTO "game_sessions" ("game_table_id", "game_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_table_id", 8], ["game_id", 5], ["created_at", "2020-03-03 18:31:31.664048"], ["updated_at", "2020-03-03 18:31:31.664048"]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+Redirected to http://localhost:3000/game_sessions/5
+Completed 302 Found in 15ms (ActiveRecord: 3.1ms | Allocations: 4692)
+
+
+Started GET "/game_sessions/5" for ::1 at 2020-03-03 12:31:31 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 5]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 5.0ms | Allocations: 3324)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 14ms (Views: 10.9ms | ActiveRecord: 0.9ms | Allocations: 8236)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:32:04 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 910)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 17.4ms | ActiveRecord: 0.3ms | Allocations: 6159)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:32:12 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 743)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 13ms (Views: 12.0ms | ActiveRecord: 0.2ms | Allocations: 4992)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:32:35 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 891)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 16.5ms | ActiveRecord: 0.3ms | Allocations: 6142)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:32:37 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 743)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 10.3ms | ActiveRecord: 0.3ms | Allocations: 4989)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:33:09 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 13.7ms | Allocations: 4287)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 23.7ms | ActiveRecord: 1.4ms | Allocations: 9545)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:33:28 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 12.1ms | Allocations: 4279)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 19.9ms | ActiveRecord: 1.1ms | Allocations: 9526)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:33:59 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 10.8ms | Allocations: 3311)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.3ms | Allocations: 4590)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<GameSession:0x00007ff681d64bb8>):
+    1: <h1>All Current Game Sessions</h1>
+    2: <ul>
+    3: <% @game_sessions.each do |session|%>
+    4:    <li> <%= session.name %> playing <%= link_to session.game.name, game_session_path(session)%> </li>
+    5:     <%end%>
+    6: </ul>
+  
+app/views/game_sessions/index.html.erb:4
+app/views/game_sessions/index.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStores (20200302200911)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "stores" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302200911"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameTables (20200302201117)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "game_tables" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "store_id" integer, "table_name" varchar, "seats_available" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201117"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameSessions (20200302201302)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "game_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "game_table_id" integer, "game_id" integer, "session_name" varchar, "player_counter" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "game_sessions_players" ("game_session_id" integer, "player_id" integer)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_game_sessions_players_on_game_session_id" ON "game_sessions_players" ("game_session_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_game_sessions_players_on_player_id" ON "game_sessions_players" ("player_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201302"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePlayers (20200302201450)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "players" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bio" varchar, "age" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201450"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGames (20200302201633)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "store_id" integer, "name" varchar, "description" varchar, "min_players" integer, "max_players" integer, "min_playtime" integer, "max_playtime" integer, "link_url" varchar, "photo_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201633"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-03 18:34:43.908753"], ["updated_at", "2020-03-03 18:34:43.908753"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Phil's Phabulous Phantasy Phactory"], ["location", "5th street by that old tree"], ["description", "It's...definitely a place"], ["created_at", "2020-03-03 18:34:49.504364"], ["updated_at", "2020-03-03 18:34:49.504364"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phear The Reaper"], ["seats_available", 6], ["created_at", "2020-03-03 18:34:49.535025"], ["updated_at", "2020-03-03 18:34:49.535025"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.5ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phorget Your worries"], ["seats_available", 6], ["created_at", "2020-03-03 18:34:49.540107"], ["updated_at", "2020-03-03 18:34:49.540107"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phun Phor All"], ["seats_available", 8], ["created_at", "2020-03-03 18:34:49.547129"], ["updated_at", "2020-03-03 18:34:49.547129"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phree Phor All"], ["seats_available", 4], ["created_at", "2020-03-03 18:34:49.553187"], ["updated_at", "2020-03-03 18:34:49.553187"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phool's Gold"], ["seats_available", 7], ["created_at", "2020-03-03 18:34:49.558841"], ["updated_at", "2020-03-03 18:34:49.558841"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Phantasy Realm"], ["description", "Players go on one of four quests, racing against each other to satisfy the victory conditions. Each turn, a hero can move rapidly about or search the areas of the board. While searching, the hero will receive an encounter, drawn and run by another player, or play through an encounter scenario (for named areas of the board). Results can help or hinder each hero by changing stats and equipment and magic. Players can also encounter other players. Combat is by competing dice rolls, modified by stats and equipment modifiers."], ["min_players", 2], ["max_players", 4], ["min_playtime", 60], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/5877/phantasy-realm"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/yCjGXzpt8KKuJQ9WvODXwhOEysU=/fit-in/900x600/filters:no_upscale()/pic22098.jpg"], ["created_at", "2020-03-03 18:34:49.573893"], ["updated_at", "2020-03-03 18:34:49.573893"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philanthropoly"], ["description", "Philanthropoly is a card based game where players negotiate and trade with other players to collect action cards to build factories, railroad and/or ports to increase the value of the various companies. Stocks in the various companies can be bought and sold depending on the players speculations and cash flow needs. Cash is earned by the play of production cards, with the type of production dependent on what natural resource, region or city card is played in conjunction. The ultimate goal of the game is to earn enough money to buy (donate) to various philanthropic causes. The most philanthropic player at the end of the game wins."], ["min_players", 2], ["max_players", 6], ["min_playtime", 150], ["max_playtime", 300], ["link_url", "https://boardgamegeek.com/boardgame/231340/philanthropoly"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/2UiMbfni5B_4fLKQtKaU8D68fXU=/fit-in/900x600/filters:no_upscale()/pic3660122.gif"], ["created_at", "2020-03-03 18:34:49.579436"], ["updated_at", "2020-03-03 18:34:49.579436"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philadelphia"], ["description", "Philadelphia is a TCG-like card game where players aim to develop the advertising agency they work for. Earn money by placing diverse and colorful advertising cards with unique abilities, and aim for combos by combining effects to get large rewards.\n\nEarned money can be used to efficiently collect sets of cards with the same color/industry, which you can present to investors as an attractive set of advertisements, raising your reputation and gain victory points.\nWill you be able to hold down rival employees, and stand victorious?"], ["min_players", 2], ["max_players", 4], ["min_playtime", 30], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/292863/philadelphia"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/3C_OqM_-j65sYfiCzL5wUCLIvh0=/fit-in/900x600/filters:no_upscale()/pic5050826.jpg"], ["created_at", "2020-03-03 18:34:49.584922"], ["updated_at", "2020-03-03 18:34:49.584922"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philately"], ["description", "A Monopoly clone stamp collecting game. There are 4 sets of 40 different stamps plus 10 spares. Players roll the die and move around the complex track, buying, selling, swapping, collecting, inheriting stamps or gaining cash. Display your set in an album as you go. No designer is named, but my box is signed by Tina & Stef (?) Dixon.\nThe stamps are nice."], ["min_players", 2], ["max_players", 4], ["min_playtime", 90], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgame/2900/philately"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/1zaunEK8p3zES-O8_6-aHAa417M=/fit-in/900x600/filters:no_upscale()/pic3051410.jpg"], ["created_at", "2020-03-03 18:34:49.589547"], ["updated_at", "2020-03-03 18:34:49.589547"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Dan and Phil's Truth Bombs"], ["description", "In the party game Dan and Phil's Truth Bombs, you're going to write something about everyone else at the table, and they're going to write stuff about you. Can you guess who said what?"], ["min_players", 4], ["max_players", 8], ["min_playtime", 20], ["max_playtime", 20], ["link_url", "https://boardgamegeek.com/boardgame/238329/dan-and-phils-truth-bombs"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/WJhEz4HEtnZu8HBWwKza6FQ2uf8=/fit-in/1200x900/filters:no_upscale()/pic3812480.jpg"], ["created_at", "2020-03-03 18:34:49.593985"], ["updated_at", "2020-03-03 18:34:49.593985"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.3ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lizard's Lair"], ["location", "Southeast-northwest of town, just past the barn"], ["description", "Significantly smaller than a dragon's lair"], ["created_at", "2020-03-03 18:34:49.597483"], ["updated_at", "2020-03-03 18:34:49.597483"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 1"], ["seats_available", 4], ["created_at", "2020-03-03 18:34:49.603815"], ["updated_at", "2020-03-03 18:34:49.603815"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 2"], ["seats_available", 4], ["created_at", "2020-03-03 18:34:49.609402"], ["updated_at", "2020-03-03 18:34:49.609402"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "The Great Beyond"], ["seats_available", 8], ["created_at", "2020-03-03 18:34:49.614731"], ["updated_at", "2020-03-03 18:34:49.614731"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "The Battle of Lizard"], ["description", "In The Battle of Lizard, a.k.a. 蜥蓋, players each control a group of lizards on an island competing for survival — long-term survival, that is, because when breeding time arrives, these male lizards (Uta stansburiana) will fight one another for land and the right to reproduction. To succeed, you need to block others to keep them from reproducing!"], ["min_players", 2], ["max_players", 6], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/269731/battle-lizard"], ["photo_url", "https://cf.geekdo-images.com/original/img/5UB3a05fBlgACtNfKN7WtrCAtt8=/0x0/pic4885364.png"], ["created_at", "2020-03-03 18:34:49.619932"], ["updated_at", "2020-03-03 18:34:49.619932"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lords, Ladies & Lizards: The Adventure Game"], ["description", "Up to six Players get a chance to create and develop Characters through a complex journey that involves strategy, economics, politics and war! Players are able to play as either a Lord, a Lady or a Lizard, each with unique properties and leveling bonuses. Over the span of many game years, players will face personal struggles with jealousy and greed, deceit and rage! They will travel across three continents by land, by sea and by air, clearing the way of treacherous monsters. Players must choose which path to take... the way of the warrior? Or the lavish life of the landlord? They can build wealth and recognition through Theatres and entertainment. Or buy and trade treasures and build kingdoms that will rise and fall! They will be forced into war against one other all for the right to reign supreme! But there will only be one winner and that is the one who defeats the Dragon! Do YOU have what it takes to defeat the Dragon!?"], ["min_players", 2], ["max_players", 6], ["min_playtime", 120], ["max_playtime", 180], ["link_url", "https://boardgamegeek.com/boardgame/102706/lords-ladies-lizards-adventure-game"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/ak4Vr--YCzc_ezmiFa62Zd3U0VE=/fit-in/900x600/filters:no_upscale()/pic1166275.jpg"], ["created_at", "2020-03-03 18:34:49.644707"], ["updated_at", "2020-03-03 18:34:49.644707"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Terrible Lizards"], ["description", "In Terrible Lizards you build your own dinosaur and fight against the reptile of your opponent. All actions including the dino parts are represented in the play of cards."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/178610/terrible-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MWfJboXEL6FIoiPr0w3LFyuZAkc=/fit-in/900x600/filters:no_upscale()/pic2692626.jpg"], ["created_at", "2020-03-03 18:34:49.650209"], ["updated_at", "2020-03-03 18:34:49.650209"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Thrilling Expeditions: Valley of the Thunder Lizard "], ["description", "Thrilling Expeditions: Valley of the Thunder Lizard allows players to play big game hunters in a lost valley populated with creatures from before the rise of man, or have their pirates going ashore on an island where Neanderthals battle Saurians, or time traveling tourists suddenly stranded in Earth’s distant past."], ["min_players", 1], ["max_players", 6], ["min_playtime", 60], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgameexpansion/36327/thrilling-expeditions-valley-thunder-lizard"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MVr_jc8ZKyCZ-bGa86CeWRtJp7g=/fit-in/900x600/filters:no_upscale()/pic329991.jpg"], ["created_at", "2020-03-03 18:34:49.654638"], ["updated_at", "2020-03-03 18:34:49.654638"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lickin' Lizards "], ["description", "A rotating base contains bug or spider disks. Each player has a plastic lizard with an 'Elastomeric' tongue (patents no. 4,369,284 and 4,618,213) which can stretch to 750% of its normal length. Try to collect disks using the sticky, stretchy tongue. Three different variations are included."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/6570/lickin-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/a56dLg7vz-mgqCoFdMgKraaqHTw=/fit-in/900x600/filters:no_upscale()/pic1975881.jpg"], ["created_at", "2020-03-03 18:34:49.658763"], ["updated_at", "2020-03-03 18:34:49.658763"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.3ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Billy-Bob's Gaming Emporeum"], ["location", "Not there, over here"], ["description", "Board games in the front, fishin' supplies out back"], ["created_at", "2020-03-03 18:34:49.662180"], ["updated_at", "2020-03-03 18:34:49.662180"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Fish Deboning Table"], ["seats_available", 4], ["created_at", "2020-03-03 18:34:49.668630"], ["updated_at", "2020-03-03 18:34:49.668630"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Master Baiting Station"], ["seats_available", 4], ["created_at", "2020-03-03 18:34:49.685241"], ["updated_at", "2020-03-03 18:34:49.685241"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "The Gross Table"], ["seats_available", 3], ["created_at", "2020-03-03 18:34:49.690394"], ["updated_at", "2020-03-03 18:34:49.690394"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Gone Fishing!"], ["description", "One player takes the role of the two anglers and tries to catch as many fish as possible. The other player takes the role of the fish and with bluff and skill tries to hinder the anglers from catching fish. The angler player decides where to fish, but must do so in the dark (that is, he cannot really see where the fish are), as the fish cards are placed face down. Because of this, he does not know whether he is catching a fish or garbage. Also, when he is lucky enough to catch a fish, he will not know until he lands it how valuable it is. With clever movement of his fish, the fish player tries to get garbage and small fish onto the anglers hooks."], ["min_players", 2], ["max_players", 2], ["min_playtime", 40], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/16226/gone-fishing"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/agk_dDlW-2P9kGE8lU84kORfmtY=/fit-in/1200x900/filters:no_upscale()/pic74873.jpg"], ["created_at", "2020-03-03 18:34:49.695757"], ["updated_at", "2020-03-03 18:34:49.695757"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Flip & Fish"], ["description", "Flip & Fish is a fast paced, competitive 2-4 player of dexterity, tactics and luck. The goal is to be the first player to catch the required number of trophy fish, which varies by player count.\n\nPlayers take turns rolling or flicking a D12 dice from their jetty towards the cards in the middle, trying to get as close as possible to a target card. When the dice stops, a fish is caught if the dice roll (along with any bonuses) is equal or higher to the catch rate of the closest fish. Players can also use caught fish as bait, and items from the Bait & Tackle shop to increase their chances of catching fish. The game is fast to learn, but offers strategic options as players become more familiar with the game."], ["min_players", 2], ["max_players", 4], ["min_playtime", 5], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/290500/flip-fish"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/JX2W3Wz_4IssXVW_ip_Krbguge4=/fit-in/900x600/filters:no_upscale()/pic4991972.jpg"], ["created_at", "2020-03-03 18:34:49.701255"], ["updated_at", "2020-03-03 18:34:49.701255"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Fish 'n' Flips"], ["description", "Fish 'n' Flips is a game about maritime animals caught in fishing nets as bycatch. Players can compete or cooperate in freeing as many as possible of them. The animals are laid out in rows and columns. On a turn, a player can play one of their two action cards. These cards can exchange positions or flip a card so the animal looks the opposite way. When several of the same animals are looking in the same direction, they will escape from the net, while any animals on top of them will slide down (tetris-style), which may lead to other groups of animals being able to escape. After each turn, another animal is added at the top of each column. When a column is seven cards high, all players lose. When all animal cards have been played, players can compare how many animals were left in the net (cooperative mode) or how many they freed (competitive mode)."], ["min_players", 1], ["max_players", 6], ["min_playtime", 15], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/288533/fish-n-flips"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/Z4N2lz56fKpGfwQclTKNeF-HcgI=/fit-in/1200x900/filters:no_upscale()/pic4944232.jpg"], ["created_at", "2020-03-03 18:34:49.705362"], ["updated_at", "2020-03-03 18:34:49.705362"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:34:53 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1053)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 13ms (Views: 7.8ms | ActiveRecord: 0.5ms | Allocations: 8199)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 12:34:55 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:8
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:11
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:14
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 44.8ms | Allocations: 21396)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 62ms (Views: 48.9ms | ActiveRecord: 3.0ms | Allocations: 29764)
+
+
+Started POST "/game_sessions" for ::1 at 2020-03-03 12:35:03 -0600
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"xsJl3aWWkkJ31FvL1+g/89bmQZwdzTQefOrK18kES/J6hh1VUbtOwoM4xrgLQ7mO6u7FDnKquLYONr4Wpk3Bhw==", "game_session"=>{"session_name"=>"Let's Party!", "game_id"=>"7", "game_table_id"=>"3", "player_ids"=>[""]}, "commit"=>"Create Game session"}
+[31mUnpermitted parameters: :session_name, :player_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameSession Create (0.5ms)[0m  [1m[32mINSERT INTO "game_sessions" ("game_table_id", "game_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_table_id", 3], ["game_id", 7], ["created_at", "2020-03-03 18:35:03.770287"], ["updated_at", "2020-03-03 18:35:03.770287"]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+Redirected to http://localhost:3000/game_sessions/1
+Completed 302 Found in 16ms (ActiveRecord: 2.4ms | Allocations: 6184)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 12:35:03 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 42.5ms | Allocations: 15056)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 58ms (Views: 52.4ms | ActiveRecord: 2.4ms | Allocations: 21022)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:35:08 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 10.1ms | Allocations: 3149)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.1ms | Allocations: 3684)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<GameSession:0x00007ff681d6ecd0>):
+    1: <h1>All Current Game Sessions</h1>
+    2: <ul>
+    3: <% @game_sessions.each do |session|%>
+    4:    <li> <%= session.name %> playing <%= link_to session.game.name, game_session_path(session)%> </li>
+    5:     <%end%>
+    6: </ul>
+  
+app/views/game_sessions/index.html.erb:4
+app/views/game_sessions/index.html.erb:3
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:35:18 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.5ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 7.5ms | Allocations: 1444)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 22.3ms | ActiveRecord: 0.9ms | Allocations: 6699)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 12:36:19 -0600
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 57.8ms | Allocations: 32742)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 86ms (Views: 71.7ms | ActiveRecord: 3.4ms | Allocations: 46946)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 12:36:24 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (1.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:8
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:11
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:14
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 17.2ms | Allocations: 4274)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 28.1ms | ActiveRecord: 1.7ms | Allocations: 8673)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 12:39:15 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:8
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:11
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:14
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 26.6ms | Allocations: 21365)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 43ms (Views: 31.0ms | ActiveRecord: 2.3ms | Allocations: 33501)
+
+
+Started POST "/game_sessions" for ::1 at 2020-03-03 12:39:23 -0600
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"XkBLMC5uOZfW6Nx3c+cS2UI7mdVPJ3AZ6ljmXwJdeJGQnCRiF6YA2oBzX/sC56emNWHThEQaa1o1kcHtT8mf9A==", "game_session"=>{"session_name"=>"Let's Party!", "game_id"=>"13", "game_table_id"=>"11", "player_ids"=>[""]}, "commit"=>"Create Game session"}
+[31mUnpermitted parameter: :player_ids[0m
+[31mUnpermitted parameter: :player_ids[0m
+[31mUnpermitted parameter: :player_ids[0m
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1077)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'name' for GameSession.):
+  
+app/controllers/game_sessions_controller.rb:15:in `create'
+Started POST "/game_sessions" for ::1 at 2020-03-03 12:39:39 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"XkBLMC5uOZfW6Nx3c+cS2UI7mdVPJ3AZ6ljmXwJdeJGQnCRiF6YA2oBzX/sC56emNWHThEQaa1o1kcHtT8mf9A==", "game_session"=>{"session_name"=>"Let's Party!", "game_id"=>"13", "game_table_id"=>"11", "player_ids"=>[""]}, "commit"=>"Create Game session"}
+[31mUnpermitted parameter: :player_ids[0m
+[31mUnpermitted parameter: :player_ids[0m
+[31mUnpermitted parameter: :player_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameSession Create (0.4ms)[0m  [1m[32mINSERT INTO "game_sessions" ("game_table_id", "game_id", "session_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["game_table_id", 11], ["game_id", 13], ["session_name", "Let's Party!"], ["created_at", "2020-03-03 18:39:39.617766"], ["updated_at", "2020-03-03 18:39:39.617766"]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+Redirected to http://localhost:3000/game_sessions/2
+Completed 302 Found in 34ms (ActiveRecord: 2.8ms | Allocations: 26929)
+
+
+Started GET "/game_sessions/2" for ::1 at 2020-03-03 12:39:39 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 20.3ms | Allocations: 16913)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 25.6ms | ActiveRecord: 1.7ms | Allocations: 22009)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:39:43 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 7.7ms | Allocations: 2179)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 18ms (Views: 15.6ms | ActiveRecord: 0.9ms | Allocations: 6571)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:41:11 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1631)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 2918)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 1, expected 0)):
+    1: <h1>All Current Game Sessions</h1>
+    2: <ul>
+    3: <% @game_sessions.each do |session|%>
+    4:    <li> Game session named <%= link_to session.session_name game_session_path(session) %> playing <%= link_to session.game.name, game_path(session.game)%> </li>
+    5:     <%end%>
+    6: </ul>
+  
+app/views/game_sessions/index.html.erb:4
+app/views/game_sessions/index.html.erb:3
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:41:19 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 2212)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 15ms (Views: 12.9ms | ActiveRecord: 0.5ms | Allocations: 7472)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:42:06 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 1052)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 2333)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>All Current Game Sessions</h1>
+<ul>
+<% @game_sessions.each do |session|%>
+   <li> Game session named <%= link_to session.session_name, game_session_path(session) %> playing <%= link_to session.game.name, game_path(session.game)%> at <%= link_to session.store, store_path(session.store)</li>
+    <%end%>
+</ul>
+
+
+
+
+):
+1:    <h1>All Current Game Sessions</h1>
+2:    <ul>
+3:    <% @game_sessions.each do |session|%>
+4:       <li> Game session named <%= link_to session.session_name, game_session_path(session) %> playing <%= link_to session.game.name, game_path(session.game)%> at <%= link_to session.store, store_path(session.store)</li>
+5:        <%end%>
+6:    </ul>
+  
+app/views/game_sessions/index.html.erb:6: unknown regexp option - l
+app/views/game_sessions/index.html.erb:6: unmatched close parenthesis: /li>
+app/views/game_sessions/index.html.erb:12: unterminated string meets end of file
+app/views/game_sessions/index.html.erb:12: syntax error, unexpected end-of-input, expecting ')'
+app/views/game_sessions/index.html.erb:6: unknown regexp option - l
+app/views/game_sessions/index.html.erb:6: unmatched close parenthesis: /li>
+app/views/game_sessions/index.html.erb:12: unterminated string meets end of file
+app/views/game_sessions/index.html.erb:12: syntax error, unexpected end-of-input, expecting ')'
+app/views/game_sessions/index.html.erb:6: unknown regexp option - l
+app/views/game_sessions/index.html.erb:6: unmatched close parenthesis: /li>
+app/views/game_sessions/index.html.erb:12: unterminated string meets end of file
+app/views/game_sessions/index.html.erb:12: syntax error, unexpected end-of-input, expecting ')'
+app/views/game_sessions/index.html.erb:6: unknown regexp option - l
+app/views/game_sessions/index.html.erb:6: unmatched close parenthesis: /li>
+app/views/game_sessions/index.html.erb:12: unterminated string meets end of file
+app/views/game_sessions/index.html.erb:12: syntax error, unexpected end-of-input, expecting ')'
+app/views/game_sessions/index.html.erb:6: unknown regexp option - l
+app/views/game_sessions/index.html.erb:6: unmatched close parenthesis: /li>
+app/views/game_sessions/index.html.erb:12: unterminated string meets end of file
+app/views/game_sessions/index.html.erb:12: syntax error, unexpected end-of-input, expecting ')'
+app/views/game_sessions/index.html.erb:6: unknown regexp option - l
+app/views/game_sessions/index.html.erb:6: unmatched close parenthesis: /li>
+app/views/game_sessions/index.html.erb:12: unterminated string meets end of file
+app/views/game_sessions/index.html.erb:12: syntax error, unexpected end-of-input, expecting ')'
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:42:22 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 7.7ms | Allocations: 4025)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.7ms | Allocations: 9283)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:42:39 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 7.4ms | Allocations: 4025)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 16.7ms | ActiveRecord: 0.7ms | Allocations: 9275)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:45:33 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 14.9ms | Allocations: 6112)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 24.8ms | ActiveRecord: 1.4ms | Allocations: 11365)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:45:50 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 10.5ms | Allocations: 6078)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 18.7ms | ActiveRecord: 1.0ms | Allocations: 11340)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:47:14 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 14.7ms | Allocations: 6078)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 23.7ms | ActiveRecord: 1.4ms | Allocations: 11327)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:47:58 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 27.5ms | Allocations: 6079)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 34.7ms | ActiveRecord: 1.0ms | Allocations: 11338)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:48:05 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 14.3ms | Allocations: 6078)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 21.6ms | ActiveRecord: 1.4ms | Allocations: 11330)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:49:06 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 13.5ms | Allocations: 5786)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 18.9ms | ActiveRecord: 1.3ms | Allocations: 10036)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:49:25 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 16.1ms | Allocations: 6078)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 23.7ms | ActiveRecord: 1.5ms | Allocations: 11327)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:49:39 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 14.9ms | Allocations: 6079)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 22.1ms | ActiveRecord: 1.3ms | Allocations: 11328)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:50:04 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 13.9ms | Allocations: 6078)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 20.4ms | ActiveRecord: 1.4ms | Allocations: 11322)
+
+
+Started GET "/games/13" for ::1 at 2020-03-03 12:50:07 -0600
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:7:in `show'
+  Rendering games/show.html.erb within layouts/application
+  Rendered games/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 326)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 10ms (Views: 8.1ms | ActiveRecord: 0.1ms | Allocations: 5707)
+
+
+Started GET "/game_sessions/2" for ::1 at 2020-03-03 12:50:11 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 8.4ms | Allocations: 3292)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 16.6ms | ActiveRecord: 1.0ms | Allocations: 8180)
+
+
+Started GET "/game_sessions/2" for ::1 at 2020-03-03 12:51:12 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 7.7ms | Allocations: 3292)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 15.6ms | ActiveRecord: 0.9ms | Allocations: 9048)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:51:14 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 14.3ms | Allocations: 6122)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 41ms (Views: 37.8ms | ActiveRecord: 1.5ms | Allocations: 10508)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 12:51:16 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:8
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:11
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:14
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 11.7ms | Allocations: 4270)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 17.4ms | ActiveRecord: 0.9ms | Allocations: 8671)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:51:57 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 13.5ms | Allocations: 6120)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 21.8ms | ActiveRecord: 1.3ms | Allocations: 11376)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:52:03 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:20
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 16.5ms | Allocations: 5809)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 22.4ms | ActiveRecord: 1.9ms | Allocations: 10048)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:52:56 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:11
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:14
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:15
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:16
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:14
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:15
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:16
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 13.8ms | Allocations: 5882)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 20.6ms | ActiveRecord: 1.4ms | Allocations: 11130)
+
+
+Started GET "/game_sessions/2" for ::1 at 2020-03-03 12:53:04 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 9.2ms | Allocations: 3292)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 15.8ms | ActiveRecord: 0.9ms | Allocations: 8181)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 12:53:19 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:14
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:15
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/index.html.erb:16
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:14
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/index.html.erb:15
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/index.html.erb:16
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 16.1ms | Allocations: 5656)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 23.4ms | ActiveRecord: 1.5ms | Allocations: 9903)
+
+
+Started GET "/game_sessions/2" for ::1 at 2020-03-03 12:53:24 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mGameSession Load (0.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 2]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 8.7ms | Allocations: 3081)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 16.1ms | ActiveRecord: 1.0ms | Allocations: 7825)
+
+
