@@ -11,8 +11,12 @@
 
   <body>
     <%= yield %>
+    <br>
+    <br>
+    <br>
     <footer>
-    <p>||<%= link_to "View all games", games_path%> || <%= link_to "View all stores", stores_path%> ||</p>
+    <p>Follow the links below to view participating stores, players, or inventory of games to choose to play! <p>
+    <p>||<%= link_to "View all games", games_path%> || <%= link_to "View all stores", stores_path%> || <%= link_to "View all players", players_path%> ||</p>
     </footer>
   </body>
 </html>

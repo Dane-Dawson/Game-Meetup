@@ -1,2 +1,11 @@
 <h1>Players</h1>
 
+<%= form_for @player do |f|%>
+<%= f.label :name%>
+<%= f.text_field :name%><br>
+<%= f.label :bio%>
+<%= f.text_area :bio%><br>
+<%= f.label :age%>
+<%= f.text_field :age %><br>
+<%= f.submit%>
+<%end%>

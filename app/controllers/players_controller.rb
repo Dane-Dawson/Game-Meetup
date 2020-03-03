@@ -8,9 +8,13 @@ class PlayersController < ApplicationController
   end
 
   def new
+    @player = Player.new
   end
 
   def create
+    @player = Player.new(player_params)
+    @player.save
+    redirect_to player_path(@player)
   end
 
   def edit
@@ -20,5 +24,11 @@ class PlayersController < ApplicationController
   end
 
   def destroy
+  end
+
+  Private
+
+  def player_params
+    params.require(:player).permit(:name, :bio, :age)
   end
 end

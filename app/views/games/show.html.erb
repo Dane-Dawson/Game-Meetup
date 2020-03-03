@@ -10,6 +10,6 @@
 <p> Learn more about this game by visiting <a href="<%=@game.link_url%>">it's page at Board Game Geeks!</a></p>
 
 
-<%= link_to "View the store where this game is located", store_path(@game.store_id)%>
+<p>Visit <%= link_to "the store", store_path(@game.store_id)%> this game is stored at!</p>
 <br>
 <%= link_to "View all games", games_path%>
