@@ -1,8 +1,25 @@
-<h1>GameSessions</h1>
+<h1>All Current Game Sessions</h1>
 
-<% @game_sessions.each do |session|%>
-    <%= session.session_name%>
-    <%end%>
+
+<table style="width:75%" border="1" cellpadding="5" align="center">
+  <tr>
+    <th>Session Name</th>
+    <th>Game Being Played</th>
+    <th>Store Hosting</th>
+    <th>Total Current Players</th>
+  </tr>
+  <% @game_sessions.each do |session|%>
+  <tr>
+    <td><%= link_to session.session_name, game_session_path(session) %></td>
+    <td><%= link_to session.game.name, game_path(session.game)%></td>
+    <td><%= link_to session.store.name, store_path(session.store) %></td>
+    <td><%= session.players.count%>
+  </tr>
+  <% end %>
+</table>
+<br>
+<br>
+<h4>Want to start a new game session? Click <%= link_to "HERE", new_game_session_path%>
 
 
 
