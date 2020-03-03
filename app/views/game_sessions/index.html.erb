@@ -1,8 +1,9 @@
-<h1>GameSessions</h1>
-
+<h1>All Current Game Sessions</h1>
+<ul>
 <% @game_sessions.each do |session|%>
-    <%= session.session_name%>
+   <li> <%= link_to session.session_name, game_session_path(session)%> </li>
     <%end%>
+</ul>
 
 
 

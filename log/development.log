@@ -1755,3 +1755,343 @@ Processing by PlayersController#index as HTML
 Completed 200 OK in 20ms (Views: 17.6ms | ActiveRecord: 0.3ms | Allocations: 6121)
 
 
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 11:32:21 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 28.4ms | Allocations: 20717)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 34.8ms | ActiveRecord: 2.3ms | Allocations: 32232)
+
+
+Started GET "/players" for ::1 at 2020-03-03 11:32:23 -0600
+Processing by PlayersController#index as HTML
+  Rendering players/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/players/index.html.erb:4
+  Rendered players/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 708)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 18ms (Views: 16.3ms | ActiveRecord: 0.2ms | Allocations: 4953)
+
+
+Started GET "/players/2" for ::1 at 2020-03-03 11:32:32 -0600
+Processing by PlayersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPlayer Load (1.0ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/players_controller.rb:7:in `show'
+  Rendering players/show.html.erb within layouts/application
+  Rendered players/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 149)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 13.0ms | ActiveRecord: 1.0ms | Allocations: 5057)
+
+
+Started GET "/games" for ::1 at 2020-03-03 11:42:29 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:8
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:11
+  Rendered games/index.html.erb within layouts/application (Duration: 19.3ms | Allocations: 10744)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 41ms (Views: 37.5ms | ActiveRecord: 1.6ms | Allocations: 15484)
+
+
+Started GET "/stores" for ::1 at 2020-03-03 11:42:31 -0600
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/stores/index.html.erb:3
+  Rendered stores/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 844)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.1ms | Allocations: 5670)
+
+
+Started GET "/stores/1" for ::1 at 2020-03-03 11:42:41 -0600
+Processing by StoresController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/stores_controller.rb:7:in `show'
+  Rendering stores/show.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/stores/show.html.erb:9
+  Rendered stores/show.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1097)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 15ms (Views: 10.8ms | ActiveRecord: 0.5ms | Allocations: 6091)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 11:42:46 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.5ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 9.7ms | Allocations: 4367)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 18ms (Views: 15.3ms | ActiveRecord: 1.2ms | Allocations: 8618)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 11:43:52 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.4ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 317.9ms | Allocations: 148651)
+Completed 500 Internal Server Error in 328ms (ActiveRecord: 0.4ms | Allocations: 149968)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `sessions' for #<#<Class:0x00007ff681cf2950>:0x00007ff681cfbcf8>
+Did you mean?  session
+               session):
+    1: <h1>GameSessions</h1>
+    2: <ul>
+    3: <% @game_sessions.each do |session|%>
+    4:    <li> <%= link_to session.session_name, game_session_path(sessions)%> </li>
+    5:     <%end%>
+    6: </ul>
+  
+app/views/game_sessions/index.html.erb:4
+app/views/game_sessions/index.html.erb:3
+Started GET "/game_sessions" for ::1 at 2020-03-03 11:44:09 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 820)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 16ms (Views: 14.5ms | ActiveRecord: 0.2ms | Allocations: 6080)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:44:11 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.4ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 5.9ms | Allocations: 81)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 15.5ms | ActiveRecord: 0.4ms | Allocations: 5089)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:45:21 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:2
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 5.6ms | Allocations: 1526)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 19.6ms | ActiveRecord: 0.7ms | Allocations: 7188)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:45:36 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:2
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 2.9ms | Allocations: 778)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 16.5ms | ActiveRecord: 0.6ms | Allocations: 6528)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:46:45 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 8.0ms | Allocations: 2702)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.3ms | Allocations: 4470)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<GameSession:0x00007ff67c8cfee0>):
+    1: <h1>This Game Session</h1>
+    2: <h3> <%= @game_session.name%> </h3>
+    3: <h4> The game we are playing today is <%= @game_session.game.name%>! </h4>
+  
+app/views/game_sessions/show.html.erb:2
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:47:00 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 3.3ms | Allocations: 795)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 14.7ms | ActiveRecord: 0.6ms | Allocations: 6545)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:47:39 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.4ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 3.0ms | Allocations: 815)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 15.4ms | ActiveRecord: 0.6ms | Allocations: 6571)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:48:47 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 12.3ms | Allocations: 4631)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.8ms | Allocations: 6401)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<GameTable:0x00007ff67da6f9c0>):
+    2: <h3> <%= @game_session.session_name%> </h3>
+    3: <h4> The game we are playing today is <%= @game_session.game.name%>! </h4>
+    4: <img src="<%=@game_session.game.photo_url%>" height="200">
+    5: <h5> Join us at the table <%= @game_session.game_table.name %> located at <%= @game_session.store.name %>! </h5>
+  
+app/views/game_sessions/show.html.erb:5
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:49:03 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.2ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 32.2ms | Allocations: 8082)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 45ms (Views: 40.6ms | ActiveRecord: 1.2ms | Allocations: 13749)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:50:14 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 9.5ms | Allocations: 3603)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 19.1ms | ActiveRecord: 1.0ms | Allocations: 9357)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-03 11:50:21 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:6
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:9
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/game_sessions/new.html.erb:12
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 13.0ms | Allocations: 4527)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 21.9ms | ActiveRecord: 0.9ms | Allocations: 8918)
+
+
+Started POST "/game_sessions" for ::1 at 2020-03-03 11:50:37 -0600
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"bazhNqBMTHMut7Fw36yZPrPG3QR0JQ/ONujqLcihb8nR6Jm+VGGQ89pbLAMDBx9Dj85ZlhtCg2ZENJ7sp+jlvA==", "game_session"=>{"game_id"=>"9", "game_table_id"=>"8", "player_ids"=>["", "1", "2", "3"]}, "commit"=>"Create Game session"}
+[31mUnpermitted parameter: :player_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[36mGameSession Create (0.6ms)[0m  [1m[32mINSERT INTO "game_sessions" ("game_table_id", "game_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_table_id", 8], ["game_id", 9], ["created_at", "2020-03-03 17:50:37.460534"], ["updated_at", "2020-03-03 17:50:37.460534"]]
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:16:in `create'
+Redirected to http://localhost:3000/game_sessions/4
+Completed 302 Found in 17ms (ActiveRecord: 2.6ms | Allocations: 4841)
+
+
+Started GET "/game_sessions/4" for ::1 at 2020-03-03 11:50:37 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 4]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 4.7ms | Allocations: 3079)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 0.7ms | Allocations: 7825)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-03 11:54:59 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (1.1ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:3
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 7.8ms | Allocations: 857)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 28.9ms | ActiveRecord: 1.1ms | Allocations: 5245)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-03 11:55:00 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.4ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 12.7ms | Allocations: 3093)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 39ms (Views: 34.6ms | ActiveRecord: 1.3ms | Allocations: 7849)
+
+
