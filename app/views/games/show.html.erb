@@ -1,5 +1,15 @@
-<h1>Check out this game!</h1>
+<h1><%= @game.name %></h1>
+<img src="<%=@game.photo_url%>" height="200">
+<h5>Number of players: <%= @game.min_players%> - <%= @game.max_players%></h5>
+<h4>Average playtime: <%= ((@game.min_playtime + @game.max_playtime) / 2)%> minutes</h4>
 
-<%= @game.name %>
+
+<h2> About this game:</h2>
+<p><%= @game.description %></p>
 <br>
-<%= @game.description %>
+<p> Learn more about this game by visiting <a href="<%=@game.link_url%>">it's page at Board Game Geeks!</a></p>
+
+
+<%= link_to "View the store where this game is located", store_path(@game.store_id)%>
+<br>
+<%= link_to "View all games", games_path%>

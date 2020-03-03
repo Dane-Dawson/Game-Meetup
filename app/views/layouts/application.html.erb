@@ -11,5 +11,8 @@
 
   <body>
     <%= yield %>
+    <footer>
+    <p>||<%= link_to "View all games", games_path%> || <%= link_to "View all stores", stores_path%> ||</p>
+    </footer>
   </body>
 </html>
