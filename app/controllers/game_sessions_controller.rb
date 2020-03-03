@@ -13,6 +13,8 @@ class GameSessionsController < ApplicationController
 
   def create
     @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id])
+    player = Player.find(game_session_params[:player_ids]) if game_session_params[:player_ids]
+    @game_session.players << player
     @game_session.save
     redirect_to game_session_path(@game_session)
   end
