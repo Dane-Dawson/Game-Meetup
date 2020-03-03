@@ -1,2 +1,17 @@
 <h1>GameSessions</h1>
 
+<%= form_for (@game_session) do |f| %>
+
+    <%= f.label :games %><br>
+    <%= f.collection_select :game_id, Game.all, :id, :name %><br>
+<br>
+    <%= f.label :game_tables %><br>
+    <%= f.collection_select :game_table_id, GameTable.all, :id, :table_name %><br>
+<br>
+<%= f.label :players %><br>
+    <%= f.collection_check_boxes :player_ids, Player.all, :id, :name %><br>
+<br>
+
+
+    <%= f.submit %>
+<% end %>
