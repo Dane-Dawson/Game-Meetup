@@ -2,6 +2,9 @@
 
 <%= form_for (@game_session) do |f| %>
 
+    <%= f.label :session_name %><br>
+    <%= f.text_field :session_name %><br>
+<br>
     <%= f.label :games %><br>
     <%= f.collection_select :game_id, Game.all, :id, :name %><br>
 <br>
