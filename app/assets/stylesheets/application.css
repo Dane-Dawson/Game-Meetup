@@ -15,6 +15,9 @@
  */
 
  /* Style the links inside the sidenav */
+ a:link {
+  color: aquamarine;
+  }
 
  a:visited {
   color: aqua;

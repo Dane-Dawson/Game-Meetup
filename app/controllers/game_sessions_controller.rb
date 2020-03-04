@@ -39,6 +39,7 @@ class GameSessionsController < ApplicationController
   end
 
   def update
+    add_player
   end
 
   def destroy
