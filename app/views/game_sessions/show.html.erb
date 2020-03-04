@@ -11,7 +11,7 @@
 <% end %>
 <br>
 
-<%= button_to "Join this game!", game_session_path(@game_session), method: :patch%>
+<%= button_to "Join this game!", game_sessions_path(@game_session), method: :post%>
 <br>
 <%=  button_to "I'm done with this. End it now.", game_session_path(@game_session), method: :delete %>
 </ul>
