@@ -1,11 +1,14 @@
 <h1><%= @game.name %></h1>
-<img src="<%=@game.photo_url%>" height="200">
-<h5>Number of players: <%= @game.min_players%> - <%= @game.max_players%></h5>
-<h4>Average playtime: <%= ((@game.min_playtime + @game.max_playtime) / 2)%> minutes</h4>
-
-
-<h2> About this game:</h2>
-<p><%= @game.description %></p>
+<table style="width:100%">
+  <tr>
+    <th><%= @game.name %></th>
+    <th>Number of players: <%= @game.min_players%> - <%= @game.max_players%><br>Average playtime: <%= ((@game.min_playtime + @game.max_playtime) / 2)%> minutes</th>
+  </tr>
+  <tr>
+    <td><img src="<%=@game.photo_url%>" height="200"></td>
+    <td><%= @game.description %></td>
+  </tr>
+</table>
 <br>
 <p> Learn more about this game by visiting <a href="<%=@game.link_url%>">it's page at Board Game Geeks!</a></p>
 

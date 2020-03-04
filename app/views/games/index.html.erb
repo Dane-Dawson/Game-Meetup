@@ -4,9 +4,9 @@
     <%# <% @games.each do |game| %>
         <%# <%= link_to game.name, game_path(game) %>
     <%# <% end %>
-
+    <ul style="width:45%">
     <% Store.all.each do |store|%>
-        <h3><%= link_to store.name, store_path(store)%></h3>
+        <li><%= link_to store.name, store_path(store)%></li>
             <ul>
             <% store.games.each do |game| %>
                 <li><p><%= link_to game.name, game_path(game) %><p></li>
@@ -14,5 +14,6 @@
             </ul>
 
     <% end %>
+    </ul>
 </div>
 

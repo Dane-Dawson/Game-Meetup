@@ -5,7 +5,7 @@
 <h5> Join us at the table <%= @game_session.game_table.table_name %> located at <%= @game_session.store.name %>! </h5>
 
 <h2>Current players:</h2>
-<ul>
+<ul style="width:45%">
 <% @game_session.players.each do |player|%>
     <li> <%= player.name %> </li>
 <% end %>
