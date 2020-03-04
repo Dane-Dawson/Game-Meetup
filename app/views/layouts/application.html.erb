@@ -10,46 +10,50 @@
   </head>
 
   <body>
-  <div class="content">
-    <div class="topnav">
-      <a>---</a>
-      <a>---</a>
-      <a>---</a>
-      <a>---</a>
-      <a>-----------------LFG Gaming Sessions-----------------</a>
-      <a>---</a>
-      <a>---</a>
-      <a>---</a>
-      <a>---</a> 
-      <a>     
-      <% if logged_in? %>
-        <%= button_to "Logout", sessions_path, method: :delete%>
-        <% else %>
-        <%= button_to "Login Page", login_path, method: :get%>
-      <% end %> 
-      </a>   
-    </div>
-
-
+  <div class="bg-image"></div>
+  <div class="bg-text">
     <div class="content">
-    <%= yield %>
-    
+      <div class="topnav">
+        <a>---</a>
+        <a>---</a>
+        <a>---</a>
+        <a>---</a>
+        <a>-----------------LFG Gaming Sessions-----------------</a>
+        <a>---</a>
+        <a>---</a>
+        <a>---</a>
+        <a>---</a> 
+        <a>     
+        <% if logged_in? %>
+          <%= button_to "Logout", sessions_path, method: :delete%>
+          <% else %>
+          <%= button_to "Login Page", login_path, method: :get%>
+        <% end %> 
+        </a>   
+      </div>
 
 
-    <br>
-    <br>
-    <br>
-    <footer>
-    <p>Follow the links below to view participating stores, players, or inventory of games to choose to play! <p>
+      <div class="content">
+      <%= yield %>
+      
 
-    <p>||<%= link_to "View all games", games_path%> || <%= link_to "View all stores", stores_path%> || <%= link_to "View all players", players_path%> || <%= link_to "View Current Game Sessions", game_sessions_path %> ||</p>
-    </footer>
+
+      <br>
+      <br>
+      <br>
+      <footer>
+      <p>Follow the links below to view participating stores, players, or inventory of games to choose to play! <p>
+
+      <p>||<%= link_to "View all games", games_path%> || <%= link_to "View all stores", stores_path%> || <%= link_to "View all players", players_path%> || <%= link_to "View Current Game Sessions", game_sessions_path %> ||</p>
+      </footer>
+      </div>
+
     </div>
-    <div id="mySidenav" class="sidenav">
-      <a href="<%= games_path %>" id="about">All Games</a>
-      <a href="<%= stores_path %>" id="blog">All Stores</a>
-      <a href="<%= players_path %>" id="projects">Registed Players</a>
-      <a href="<%= game_sessions_path %>" id="contact">Game Sessions</a>
-    </div>
+      <div id="mySidenav" class="sidenav">
+        <a href="<%= games_path %>" id="about">All Games</a>
+        <a href="<%= stores_path %>" id="blog">All Stores</a>
+        <a href="<%= players_path %>" id="projects">Registed Players</a>
+        <a href="<%= game_sessions_path %>" id="contact">Game Sessions</a>
+      </div>
   </body>
 </html>

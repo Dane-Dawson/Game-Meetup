@@ -16,6 +16,51 @@
 
  /* Style the links inside the sidenav */
 
+ a:visited {
+  color: aqua;
+  }
+
+ body, html {
+    height: 100%;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .bg-image {
+    /* The image used */
+    background-image: url("https://st4.depositphotos.com/1016729/23410/i/1600/depositphotos_234102762-stock-photo-mystical-interior-ruins-facade-abandoned.jpg");
+  
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  
+    /* Full height */
+    height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-text {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    height: 90%;
+    padding: 20px;
+    text-align: center;
+  }
  
 .content {
   max-width: 900px;
@@ -24,10 +69,10 @@
 
 #mySidenav a {
     position: absolute; /* Position them relative to the browser window */
-    left: -150px; /* Position them outside of the screen */
+    left: -250px; /* Position them outside of the screen */
     transition: 0.3s; /* Add transition on hover */
     padding: 15px; /* 15px padding */
-    width: 200px; /* Set a specific width */
+    width: 300px; /* Set a specific width */
     text-decoration: none; /* Remove underline */
     font-size: 20px; /* Increase font size */
     color: white; /* White text color */
