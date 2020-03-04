@@ -32,6 +32,9 @@ class PlayersController < ApplicationController
 
   def destroy
     @player = Player.find(params[:id])
+    if @player.id = session[:player_id]
+      session[:player_id] = nil
+    end
     @player.destroy
     redirect_to players_path
   end

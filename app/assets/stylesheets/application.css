@@ -15,12 +15,19 @@
  */
 
  /* Style the links inside the sidenav */
+
+ 
+.content {
+  max-width: 900px;
+  margin: auto;
+}
+
 #mySidenav a {
     position: absolute; /* Position them relative to the browser window */
-    right: -80px; /* Position them outside of the screen */
+    left: -150px; /* Position them outside of the screen */
     transition: 0.3s; /* Add transition on hover */
     padding: 15px; /* 15px padding */
-    width: 100px; /* Set a specific width */
+    width: 200px; /* Set a specific width */
     text-decoration: none; /* Remove underline */
     font-size: 20px; /* Increase font size */
     color: white; /* White text color */
@@ -28,7 +35,7 @@
   }
   
   #mySidenav a:hover {
-    right: 0; /* On mouse-over, make the elements appear as they should */
+    left: 0; /* On mouse-over, make the elements appear as they should */
   }
   
   /* The about link: 20px from the top with a green background */
@@ -43,12 +50,12 @@
   }
   
   #projects {
-    top: 200px;
+    top: 190px;
     background-color: #f44336; /* Red */
   }
   
   #contact {
-    top: 290px;
+    top: 250px;
     background-color: #555 /* Light Black */
   }
 
@@ -69,10 +76,10 @@
   }
   
   /* Change the color of links on hover */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
+  /* .topnav a:hover { */
+    /* background-color: #ddd; */
+    /* color: black; */
+  /* } */
   
   /* Add a color to the active/current link */
   .topnav a.active {

@@ -1,5 +1,6 @@
 <h1>Log in</h1>
 
+
 <%= form_tag sessions_path do %>
     <%= label_tag "Player Name" %><br>
     <%= text_field_tag :name, nil, placeholder: "Player Name" %><br>
@@ -7,3 +8,5 @@
     <%= password_field_tag :password, nil, placeholder: "Password" %><br>
     <%= submit_tag "Log In"%>
 <% end %>
+
+<h4> If you don't have a player account yet, click <%= link_to "here", new_player_path%> to create one!</h4>
