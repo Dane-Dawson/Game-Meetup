@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root 'stores#home'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/delete'

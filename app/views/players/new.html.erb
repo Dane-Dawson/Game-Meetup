@@ -6,15 +6,15 @@
     <% end %>
  <% end %>
 <%= form_for @player do |f|%>
-<%= f.label :name%>
-<%= f.text_field :name%><br>
-<%= f.label :password%>
-<%= f.password_field :password, placeholder: "Password"%><br>
-<%= f.label :password_confirmation%>
-<%= f.password_field :password_confirmation, placeholder: "Confirm Password"%><br>
-<%= f.label :bio%>
-<%= f.text_area :bio%><br>
-<%= f.label :age%>
-<%= f.text_field :age %><br>
+<%= f.label :name%><br>
+<%= f.text_field :name%><br><br>
+<%= f.label :password%><br>
+<%= f.password_field :password, placeholder: "Password"%><br><br>
+<%= f.label :password_confirmation%><br>
+<%= f.password_field :password_confirmation, placeholder: "Confirm Password"%><br><br>
+<%= f.label :bio%><br>
+<%= f.text_area :bio%><br><br>
+<%= f.label :age%><br>
+<%= f.text_field :age %><br><br>
 <%= f.submit "Create Player"%>
 <%end%>

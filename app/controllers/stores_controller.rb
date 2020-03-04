@@ -3,6 +3,9 @@ class StoresController < ApplicationController
     @stores = Store.all
   end
 
+  def home
+  end
+  
   def show
     @store = Store.find(params[:id])
   end
