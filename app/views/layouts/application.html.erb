@@ -14,22 +14,30 @@
   <div class="bg-text">
     <div class="content">
       <div class="topnav">
-        <a>---</a>
-        <a>---</a>
+        <a>     
+          <% if logged_in? %>
+          <%= button_to "Logout", sessions_path, method: :delete%>
+          <% else %>
+          <%= button_to "Login Page", login_path, method: :get%>
+          <% end %> 
+        </a>  
         <a>---</a>
         <a>---</a>
         <a>-----------------LFG Gaming Sessions-----------------</a>
         <a>---</a>
         <a>---</a>
         <a>---</a>
-        <a>---</a> 
-        <a>     
-        <% if logged_in? %>
-          <%= button_to "Logout", sessions_path, method: :delete%>
-          <% else %>
-          <%= button_to "Login Page", login_path, method: :get%>
-        <% end %> 
-        </a>   
+        <div class="dropdown">
+            <button class="dropbtn">Participating Stores
+             <i class="fa fa-caret-down"></i>
+            </button>
+          <div class="dropdown-content">
+            <% Store.all.each do |store|%>
+            <a href="<%= store_path(store) %>%"><%=store.name%></a>
+            <% end %>
+          </div>
+        </div>
+ 
       </div>
 
 
@@ -46,9 +54,8 @@
     </div>
       <div id="mySidenav" class="sidenav">
         <a href="<%= games_path %>" id="about">All Games</a>
-        <a href="<%= stores_path %>" id="blog">All Stores</a>
+        <a href="<%= game_sessions_path %>" id="blog">Current Sessions</a>
         <a href="<%= players_path %>" id="projects">Registed Players</a>
-        <a href="<%= game_sessions_path %>" id="contact">Game Sessions</a>
       </div>
   </body>
 </html>

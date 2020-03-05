@@ -4,6 +4,21 @@
 <h5> About our store: </h5>
 <p><%= @store.description %></p>
 <br>
+<h5> Come check out one of our gaming tables! </h5>
+
+<table style="width:40%" align="center">
+  <tr>
+    <th>Table Name</th>
+    <th>Seats Available</th>
+  </tr>
+    <% @store.game_tables.each do |table| %>
+    <tr>
+        <td> <%= table.table_name %></td>
+        <td> <%= table.seats_available %> </td>
+    </tr>
+    <% end %>
+
+</table>
 <br>
 <h4>Check out our inventory!</h4>
 <% @store.games.each do |g|%>
