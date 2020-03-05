@@ -7,6 +7,16 @@
     <% end %>
 </ul>
 </div>
+    <div class="dropdown">
+        <button class="dropbtn">Registered Players
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+        <% @players.each do |player| %>
+        <a href="<%= player_path(player) %>"><%=player.name%></a>
+        <% end %>
+        </div>
+    </div>
 <br>
 <br>
 <%= link_to "Create new player", new_player_path%>

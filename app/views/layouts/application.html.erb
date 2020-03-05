@@ -9,7 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="custom">
   <div class="bg-image"></div>
   <div class="bg-text">
     <div class="content">
@@ -24,9 +24,16 @@
         <a>---</a>
         <a>---</a>
         <a>-----------------LFG Gaming Sessions-----------------</a>
-        <a>---</a>
-        <a>---</a>
-        <a>---</a>
+        <div class="dropdown">
+            <button class="dropbtn">Registered Players
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+            <% Player.all.each do |player| %>
+            <a href="<%= player_path(player) %>"><%=player.name%></a>
+            <% end %>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">Participating Stores
              <i class="fa fa-caret-down"></i>
