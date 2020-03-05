@@ -13,6 +13,11 @@
         <%= f.label :games %><br>
         <%= f.collection_select :game_id, Game.all, :id, :name %><br>
         <br>
+        <%= f.label :date %><br>
+        <%= f.date_field :date %><br>
+        <%= f.label :time %><br>
+        <%= f.time_field :time %><br>
+        <br>
         <%= f.label :game_tables %><br>
         <%= f.collection_select :game_table_id, GameTable.all, :id, :table_name %><br>
         <br>

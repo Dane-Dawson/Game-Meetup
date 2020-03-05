@@ -12,7 +12,7 @@ class GameSessionsController < ApplicationController
   end
 
   def create
-    @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id])
+    @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id], date: game_session_params[:date], time: game_session_params[:time])
 
     if @game_session.valid?
       @game_session.save
@@ -72,6 +72,6 @@ class GameSessionsController < ApplicationController
 
   def game_session_params
     pp @game_session
-    params.require(:game_session).permit(:game_id, :game_table_id, :player_ids, :session_name)
+    params.require(:game_session).permit(:game_id, :game_table_id, :player_ids, :session_name, :date, :time)
   end
 end
