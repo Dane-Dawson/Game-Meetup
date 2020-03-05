@@ -14,8 +14,18 @@ class Player < ApplicationRecord
         Player.all.sort_by(&:age).reverse.first
     end
 
+    def self.youngest_player
+        Player.all.sort_by(&:age).first
+    end
+
     def self.most_sessions
         Player.all.sort_by{ |player| player.game_sessions.count}.reverse.first
     end
+
+    def self.first_to_join
+        Player.all.sort_by(&:created_at).first 
+    end
+
+    
 
 end

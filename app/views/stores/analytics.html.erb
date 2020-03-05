@@ -1,0 +1,9 @@
+<h1> Leader Board </h1>
+
+<p>Oldest player: <%= Player.oldest_player.name %></p>
+<p>Youngest player: <%= Player.youngest_player.name %></p>
+<p>Player with the most game sessions: <%= Player.most_sessions.name %></p>
+<p>First player to join: <%= Player.first_to_join.name %></p>
+<p>Game with the longest play time: <%= Game.longest_game.name %>, at <%= Game.longest_game.max_playtime %> minutes</p>
+<p>Game with the most sessions started: <%= Game.most_sessions.name %></p>
+
