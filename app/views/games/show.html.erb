@@ -14,5 +14,10 @@
 
 
 <p>Visit <%= link_to "the store", store_path(@game.store_id)%> this game is stored at!</p>
+
+<p> Click on a game session below to get started playing!</p>
+<% @game.game_sessions.each do |game_session| %>
+  <%= link_to game_session.session_name, game_session_path(@game) %><br>
+<% end %>
 <br>
 <%= link_to "View all games", games_path%>
