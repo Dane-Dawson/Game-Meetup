@@ -5,3 +5,13 @@ log
 public
 storage
 vendor
+db/development.sqlite3
+log/development.log
+tmp/cache
+tmp/cache/assets/sprockets/v4.0.0/1H/1HyneLliGLAocm4KVeWzj5tKGWdomYfz7rWloxQlXRc.cache
+tmp/cache/assets/sprockets/v4.0.0/8J/8JOedZF9m0P656fHle8DWmmJffxhiciEo-B9Ta6NyG8.cache
+tmp/cache/bootsnap-compile-cache/d2/3b969fe9531d25
+log/development.log
+
+tmp/cache/bootsnap-compile-cache/ba/7bbdd9e6a04749
+tmp/cache/bootsnap-compile-cache/d2/3b969fe9531d25

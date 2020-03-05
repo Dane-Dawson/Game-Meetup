@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root 'stores#home'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/delete'
@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
   
-  patch "/game_sessions", to: "game_sessions#add_player"
+  patch "/game_sessions", to: "game_sessions#add_player"#, as: "add_player"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

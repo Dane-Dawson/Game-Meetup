@@ -1,17 +1,31 @@
-<h1>This Game Session</h1>
-<h3> <%= @game_session.session_name%> </h3>
-<h4> The game we are playing today is <%= @game_session.game.name%>! </h4>
-<img src="<%=@game_session.game.photo_url%>" height="200">
-<h5> Join us at the table <%= @game_session.game_table.table_name %> located at <%= @game_session.store.name %>! </h5>
-
-<h2>Current players:</h2>
-<ul>
-<% @game_session.players.each do |player|%>
-    <li> <%= player.name %> </li>
-<% end %>
+<h3> Game Session name : <%= @game_session.session_name%> </h3><br>
+<h4> Join us at the table <%= @game_session.game_table.table_name %> located at <%= @game_session.store.name %>! </h4>
+<table style="width:100%">
+  <tr>
+    <td><br><img src="<%=@game_session.game.photo_url%>" height="200"><br><h3><%= @game_session.game.name%></h3></td>
+    <td><h2>Current players:</h2>
+        <ul style="width:45%">
+        <% @game_session.players.each do |player|%>
+            <li> <%= player.name %> </li>
+        <% end %>
+        </ul>
+    </td>
+  </tr>
+</table>
 <br>
 
-<%= button_to "Join this game!", "/game_sessions/#{@game_session.id}", method: :patch%>
-<br>
-<%=  button_to "I'm done with this. End it now.", game_session_path(@game_session), method: :delete %>
-</ul>
+
+<table align="center">
+    <tr>
+        <th><h6 align="center">There are currently <%= @game_session.game_table.seats_available - @game_session.players.count %> seats available for this game!</h6></th>
+        <th></th>
+            <th>
+            <%= button_to "Join this game!", "/game_sessions/#{@game_session.id}", method: :patch%>
+            <%=  button_to "Remove this game session. Please don't.", game_session_path(@game_session), method: :delete %>
+            </th>
+        <th></th>
+        <th><h3><%= link_to "View all game sessions", game_sessions_path %></th>
+    </tr>
+</table>
+
+

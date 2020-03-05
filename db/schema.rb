@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_201633) do
     t.integer "game_id"
     t.string "session_name"
     t.integer "player_counter"
+    t.date "date"
+    t.time "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

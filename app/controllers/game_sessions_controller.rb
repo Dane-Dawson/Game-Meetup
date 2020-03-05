@@ -11,8 +11,13 @@ class GameSessionsController < ApplicationController
     @game_session = GameSession.new 
   end
 
+
+
+  # def is_date_free?
+  #   if GameSession.all.include?(date: @game_session.date)
+
   def create
-    @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id])
+    @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id], date: game_session_params[:date], time: game_session_params[:time])
 
     if @game_session.valid?
       @game_session.save
@@ -39,7 +44,12 @@ class GameSessionsController < ApplicationController
   end
 
   def update
-    add_player
+   
+    if !player_present? && is_table_space_available? 
+      add_player
+    else
+      
+    end
   end
 
   def destroy
@@ -48,10 +58,25 @@ class GameSessionsController < ApplicationController
     redirect_to game_sessions_path 
   end
 
+  def player_present?
+    @game_session = GameSession.find(params[:id])
+    player = Player.find(session[:player_id])
+    @game_session.player_ids.include?(player.id)
+  end
+
+  def is_table_space_available?
+    @game_session = GameSession.find(params[:id])
+    @game_session.game_table.players.count < @game_session.game_table.seats_available
+  end
+
   private
+
+  def find_game_session
+    @game_session = GameSession.find(params[:id])
+  end
 
   def game_session_params
     pp @game_session
-    params.require(:game_session).permit(:game_id, :game_table_id, :player_ids, :session_name)
+    params.require(:game_session).permit(:game_id, :game_table_id, :player_ids, :session_name, :date, :time)
   end
 end
