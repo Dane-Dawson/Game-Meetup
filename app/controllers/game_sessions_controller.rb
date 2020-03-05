@@ -11,6 +11,11 @@ class GameSessionsController < ApplicationController
     @game_session = GameSession.new 
   end
 
+
+
+  # def is_date_free?
+  #   if GameSession.all.include?(date: @game_session.date)
+
   def create
     @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id], date: game_session_params[:date], time: game_session_params[:time])
 
@@ -39,7 +44,7 @@ class GameSessionsController < ApplicationController
   end
 
   def update
-   # add_player
+   
     if !player_present? && is_table_space_available? 
       add_player
     else

@@ -15,7 +15,9 @@
  */
 
  /* Style the links inside the sidenav */
- 
+ * {
+  font-family: fantasy;
+ }
  a:link {
   color: aquamarine;
   }

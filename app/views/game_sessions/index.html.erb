@@ -6,14 +6,16 @@
     <th>Session Name</th>
     <th>Game Being Played</th>
     <th>Store Hosting</th>
-    <th>Total Current Players</th>
+    <th>Current Players</th>
+    <th>Date of session</th>
   </tr>
   <% @game_sessions.each do |session|%>
   <tr>
     <td><%= link_to session.session_name, game_session_path(session) %></td>
     <td><%= link_to session.game.name, game_path(session.game)%></td>
     <td><%= link_to session.store.name, store_path(session.store) %></td>
-    <td><%= session.players.count%>
+    <td><%= session.players.count%></td>
+    <td><%= session.date.strftime("%B %m") %></td>
   </tr>
   <% end %>
 </table>

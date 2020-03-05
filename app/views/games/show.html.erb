@@ -17,7 +17,7 @@
 
 <p> Click on a game session below to get started playing!</p>
 <% @game.game_sessions.each do |game_session| %>
-  <%= link_to game_session.session_name, game_session_path(@game) %><br>
+  <%= link_to game_session.session_name, game_session_path(game_session) %><br>
 <% end %>
 <br>
 <%= link_to "View all games", games_path%>

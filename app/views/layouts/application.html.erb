@@ -14,36 +14,38 @@
   <div class="bg-text">
     <div class="content">
       <div class="topnav">
-        <a>     
-          <% if logged_in? %>
-          <%= button_to "Logout", sessions_path, method: :delete%>
-          <% else %>
-          <%= button_to "Login Page", login_path, method: :get%>
-          <% end %> 
-        </a>  
-        <a>---</a>
-        <a>---</a>
-        <a>-----------------LFG Gaming Sessions-----------------</a>
+  
+
+        <a><h2><font face="fantasy">Looking For Group, Board Game Edition!</font></h2></a>
         <div class="dropdown">
             <button class="dropbtn">Registered Players
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
+            <br>
+              <% if logged_in? %>
+              <%= button_to "Logout", sessions_path, method: :delete%>
+              <% else %>
+              <%= button_to "Login Page", login_path, method: :get%>
+              <% end %> 
+            <br>
             <% Player.all.each do |player| %>
             <a href="<%= player_path(player) %>"><%=player.name%></a>
             <% end %>
             </div>
         </div>
-        <div class="dropdown">
+                <div class="dropdown">
             <button class="dropbtn">Participating Stores
              <i class="fa fa-caret-down"></i>
             </button>
-          <div class="dropdown-content">
-            <% Store.all.each do |store|%>
-            <a href="<%= store_path(store) %>%"><%=store.name%></a>
-            <% end %>
-          </div>
+            <div class="dropdown-content">
+              <% Store.all.each do |store|%>
+              <a href="<%= store_path(store) %>%"><%=store.name%></a>
+              <% end %>
+              <%= link_to "All games", games_path%>
+            </div>
         </div>
+
  
       </div>
 

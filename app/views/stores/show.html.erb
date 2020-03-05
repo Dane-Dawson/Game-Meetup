@@ -1,8 +1,14 @@
 <h1><%= @store.name %></h1>
-<p>Located at:</p>
-<h3><%= @store.location %></h3>
-<h5> About our store: </h5>
-<p><%= @store.description %></p>
+<table align="center" width="70%" height="20%">
+    <tr>
+        <th>Located at:</th>
+        <th>About our store:</th>
+    </tr>
+        <td><%= @store.location %></td>
+        <td><%= @store.description %></td>
+    <tr>
+</table>
+
 <br>
 <h5> Come check out one of our gaming tables! </h5>
 
@@ -19,7 +25,6 @@
     <% end %>
 
 </table>
-<br>
 <h4>Check out our inventory!</h4>
 <% @store.games.each do |g|%>
 <%= link_to g.name, game_path(g)%><br>

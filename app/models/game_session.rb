@@ -8,4 +8,15 @@ class GameSession < ApplicationRecord
     validates :game_id, presence: true
     validates :game_table_id, presence: true
 
+
+    def self.game_sessions_in_date(date)
+        GameSession.all.select{|session| session.date = date}
+    end
+
+    def self.game_session_dates
+        GameSession.all.collect.uniq(&:date)
+    end
+
+    
+
 end

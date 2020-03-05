@@ -1,4 +1,4 @@
-<h1>GameSessions</h1>
+<h1>Create a new game session</h1>
 <% if logged_in? %>
     <p><% if @game_session.errors.any? %>
     <p> Ya done messed up, check yo'self </p>
@@ -15,14 +15,21 @@
         <br>
         <%= f.label :date %><br>
         <%= f.date_field :date %><br>
-        <%= f.label :time %><br>
-        <%= f.time_field :time %><br>
+        <%# <%= f.label :time %>
+        <%# <%= f.time_field :time %>
         <br>
-        <%= f.label :game_tables %><br>
-        <%= f.collection_select :game_table_id, GameTable.all, :id, :table_name %><br>
+        <%= f.label :game_table_and_store %><br>
+        <%= f.collection_select :game_table_id, GameTable.all, :id, :name_and_store %><br>
         <br>
         <%= f.submit %>
     <% end %>
 <% else %>
-    <h3>You have to be logged in to create game sessions! go <%= link_to "here", new_player_path%> to create a player account! </h3>
+    <h4>While looking for our forms to create a new game session</h4>
+    <br>
+    <h4>we made the unfortunate discovery that</h4>
+    <br>
+    <h1>Your account is in another castle!</h1>
+    <br>
+    <br>
+    <h3>You have to be logged in to create game sessions! Click <%= link_to "here", new_player_path%> to create a player account!, or <%= link_to "here", login_path%> to log in! </h3>
 <% end %>
