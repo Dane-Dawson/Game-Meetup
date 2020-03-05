@@ -13171,3 +13171,1020 @@ Processing by GameSessionsController#index as HTML
 Completed 200 OK in 56ms (Views: 50.0ms | ActiveRecord: 4.2ms | Allocations: 21924)
 
 
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStores (20200302200911)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "stores" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302200911"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameTables (20200302201117)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "game_tables" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "store_id" integer, "table_name" varchar, "seats_available" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201117"]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameSessions (20200302201302)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "game_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "game_table_id" integer, "game_id" integer, "session_name" varchar, "player_counter" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "game_sessions_players" ("game_session_id" integer, "player_id" integer)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "index_game_sessions_players_on_game_session_id" ON "game_sessions_players" ("game_session_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_game_sessions_players_on_player_id" ON "game_sessions_players" ("player_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201302"]]
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePlayers (20200302201450)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "players" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bio" varchar, "password_digest" varchar, "age" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201450"]]
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGames (20200302201633)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "store_id" integer, "name" varchar, "description" varchar, "min_players" integer, "max_players" integer, "min_playtime" integer, "max_playtime" integer, "link_url" varchar, "photo_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201633"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-05 16:53:59.725427"], ["updated_at", "2020-03-05 16:53:59.725427"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.6ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Phil's Phabulous Phantasy Phactory"], ["location", "5th street by that old tree"], ["description", "It's...definitely a place"], ["created_at", "2020-03-05 16:54:12.977440"], ["updated_at", "2020-03-05 16:54:12.977440"]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phear The Reaper"], ["seats_available", 6], ["created_at", "2020-03-05 16:54:13.033767"], ["updated_at", "2020-03-05 16:54:13.033767"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phorget Your worries"], ["seats_available", 6], ["created_at", "2020-03-05 16:54:13.040613"], ["updated_at", "2020-03-05 16:54:13.040613"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phun Phor All"], ["seats_available", 8], ["created_at", "2020-03-05 16:54:13.047392"], ["updated_at", "2020-03-05 16:54:13.047392"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phree Phor All"], ["seats_available", 4], ["created_at", "2020-03-05 16:54:13.054028"], ["updated_at", "2020-03-05 16:54:13.054028"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phool's Gold"], ["seats_available", 7], ["created_at", "2020-03-05 16:54:13.060604"], ["updated_at", "2020-03-05 16:54:13.060604"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Phantasy Realm"], ["description", "Players go on one of four quests, racing against each other to satisfy the victory conditions. Each turn, a hero can move rapidly about or search the areas of the board. While searching, the hero will receive an encounter, drawn and run by another player, or play through an encounter scenario (for named areas of the board). Results can help or hinder each hero by changing stats and equipment and magic. Players can also encounter other players. Combat is by competing dice rolls, modified by stats and equipment modifiers."], ["min_players", 2], ["max_players", 4], ["min_playtime", 60], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/5877/phantasy-realm"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/yCjGXzpt8KKuJQ9WvODXwhOEysU=/fit-in/900x600/filters:no_upscale()/pic22098.jpg"], ["created_at", "2020-03-05 16:54:13.080566"], ["updated_at", "2020-03-05 16:54:13.080566"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philanthropoly"], ["description", "Philanthropoly is a card based game where players negotiate and trade with other players to collect action cards to build factories, railroad and/or ports to increase the value of the various companies. Stocks in the various companies can be bought and sold depending on the players speculations and cash flow needs. Cash is earned by the play of production cards, with the type of production dependent on what natural resource, region or city card is played in conjunction. The ultimate goal of the game is to earn enough money to buy (donate) to various philanthropic causes. The most philanthropic player at the end of the game wins."], ["min_players", 2], ["max_players", 6], ["min_playtime", 150], ["max_playtime", 300], ["link_url", "https://boardgamegeek.com/boardgame/231340/philanthropoly"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/2UiMbfni5B_4fLKQtKaU8D68fXU=/fit-in/900x600/filters:no_upscale()/pic3660122.gif"], ["created_at", "2020-03-05 16:54:13.086860"], ["updated_at", "2020-03-05 16:54:13.086860"]]
+  [1m[35m (3.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philadelphia"], ["description", "Philadelphia is a TCG-like card game where players aim to develop the advertising agency they work for. Earn money by placing diverse and colorful advertising cards with unique abilities, and aim for combos by combining effects to get large rewards.\n\nEarned money can be used to efficiently collect sets of cards with the same color/industry, which you can present to investors as an attractive set of advertisements, raising your reputation and gain victory points.\nWill you be able to hold down rival employees, and stand victorious?"], ["min_players", 2], ["max_players", 4], ["min_playtime", 30], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/292863/philadelphia"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/3C_OqM_-j65sYfiCzL5wUCLIvh0=/fit-in/900x600/filters:no_upscale()/pic5050826.jpg"], ["created_at", "2020-03-05 16:54:13.124437"], ["updated_at", "2020-03-05 16:54:13.124437"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philately"], ["description", "A Monopoly clone stamp collecting game. There are 4 sets of 40 different stamps plus 10 spares. Players roll the die and move around the complex track, buying, selling, swapping, collecting, inheriting stamps or gaining cash. Display your set in an album as you go. No designer is named, but my box is signed by Tina & Stef (?) Dixon.\nThe stamps are nice."], ["min_players", 2], ["max_players", 4], ["min_playtime", 90], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgame/2900/philately"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/1zaunEK8p3zES-O8_6-aHAa417M=/fit-in/900x600/filters:no_upscale()/pic3051410.jpg"], ["created_at", "2020-03-05 16:54:13.131833"], ["updated_at", "2020-03-05 16:54:13.131833"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Dan and Phil's Truth Bombs"], ["description", "In the party game Dan and Phil's Truth Bombs, you're going to write something about everyone else at the table, and they're going to write stuff about you. Can you guess who said what?"], ["min_players", 4], ["max_players", 8], ["min_playtime", 20], ["max_playtime", 20], ["link_url", "https://boardgamegeek.com/boardgame/238329/dan-and-phils-truth-bombs"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/WJhEz4HEtnZu8HBWwKza6FQ2uf8=/fit-in/1200x900/filters:no_upscale()/pic3812480.jpg"], ["created_at", "2020-03-05 16:54:13.137887"], ["updated_at", "2020-03-05 16:54:13.137887"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lizard's Lair"], ["location", "Southeast-northwest of town, just past the barn"], ["description", "Significantly smaller than a dragon's lair"], ["created_at", "2020-03-05 16:54:13.141610"], ["updated_at", "2020-03-05 16:54:13.141610"]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 1"], ["seats_available", 4], ["created_at", "2020-03-05 16:54:13.150390"], ["updated_at", "2020-03-05 16:54:13.150390"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 2"], ["seats_available", 4], ["created_at", "2020-03-05 16:54:13.156479"], ["updated_at", "2020-03-05 16:54:13.156479"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "The Great Beyond"], ["seats_available", 8], ["created_at", "2020-03-05 16:54:13.162531"], ["updated_at", "2020-03-05 16:54:13.162531"]]
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (10.1ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "The Battle of Lizard"], ["description", "In The Battle of Lizard, a.k.a. 蜥蓋, players each control a group of lizards on an island competing for survival — long-term survival, that is, because when breeding time arrives, these male lizards (Uta stansburiana) will fight one another for land and the right to reproduction. To succeed, you need to block others to keep them from reproducing!"], ["min_players", 2], ["max_players", 6], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/269731/battle-lizard"], ["photo_url", "https://cf.geekdo-images.com/original/img/5UB3a05fBlgACtNfKN7WtrCAtt8=/0x0/pic4885364.png"], ["created_at", "2020-03-05 16:54:13.192335"], ["updated_at", "2020-03-05 16:54:13.192335"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lords, Ladies & Lizards: The Adventure Game"], ["description", "Up to six Players get a chance to create and develop Characters through a complex journey that involves strategy, economics, politics and war! Players are able to play as either a Lord, a Lady or a Lizard, each with unique properties and leveling bonuses. Over the span of many game years, players will face personal struggles with jealousy and greed, deceit and rage! They will travel across three continents by land, by sea and by air, clearing the way of treacherous monsters. Players must choose which path to take... the way of the warrior? Or the lavish life of the landlord? They can build wealth and recognition through Theatres and entertainment. Or buy and trade treasures and build kingdoms that will rise and fall! They will be forced into war against one other all for the right to reign supreme! But there will only be one winner and that is the one who defeats the Dragon! Do YOU have what it takes to defeat the Dragon!?"], ["min_players", 2], ["max_players", 6], ["min_playtime", 120], ["max_playtime", 180], ["link_url", "https://boardgamegeek.com/boardgame/102706/lords-ladies-lizards-adventure-game"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/ak4Vr--YCzc_ezmiFa62Zd3U0VE=/fit-in/900x600/filters:no_upscale()/pic1166275.jpg"], ["created_at", "2020-03-05 16:54:13.211293"], ["updated_at", "2020-03-05 16:54:13.211293"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Terrible Lizards"], ["description", "In Terrible Lizards you build your own dinosaur and fight against the reptile of your opponent. All actions including the dino parts are represented in the play of cards."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/178610/terrible-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MWfJboXEL6FIoiPr0w3LFyuZAkc=/fit-in/900x600/filters:no_upscale()/pic2692626.jpg"], ["created_at", "2020-03-05 16:54:13.219999"], ["updated_at", "2020-03-05 16:54:13.219999"]]
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Thrilling Expeditions: Valley of the Thunder Lizard "], ["description", "Thrilling Expeditions: Valley of the Thunder Lizard allows players to play big game hunters in a lost valley populated with creatures from before the rise of man, or have their pirates going ashore on an island where Neanderthals battle Saurians, or time traveling tourists suddenly stranded in Earth’s distant past."], ["min_players", 1], ["max_players", 6], ["min_playtime", 60], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgameexpansion/36327/thrilling-expeditions-valley-thunder-lizard"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MVr_jc8ZKyCZ-bGa86CeWRtJp7g=/fit-in/900x600/filters:no_upscale()/pic329991.jpg"], ["created_at", "2020-03-05 16:54:13.228738"], ["updated_at", "2020-03-05 16:54:13.228738"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lickin' Lizards "], ["description", "A rotating base contains bug or spider disks. Each player has a plastic lizard with an 'Elastomeric' tongue (patents no. 4,369,284 and 4,618,213) which can stretch to 750% of its normal length. Try to collect disks using the sticky, stretchy tongue. Three different variations are included."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/6570/lickin-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/a56dLg7vz-mgqCoFdMgKraaqHTw=/fit-in/900x600/filters:no_upscale()/pic1975881.jpg"], ["created_at", "2020-03-05 16:54:13.236326"], ["updated_at", "2020-03-05 16:54:13.236326"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Billy-Bob's Gaming Emporeum"], ["location", "Not there, over here"], ["description", "Board games in the front, fishin' supplies out back"], ["created_at", "2020-03-05 16:54:13.240251"], ["updated_at", "2020-03-05 16:54:13.240251"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Fish Deboning Table"], ["seats_available", 4], ["created_at", "2020-03-05 16:54:13.248698"], ["updated_at", "2020-03-05 16:54:13.248698"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.5ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Master Baiting Station"], ["seats_available", 4], ["created_at", "2020-03-05 16:54:13.254976"], ["updated_at", "2020-03-05 16:54:13.254976"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "The Gross Table"], ["seats_available", 3], ["created_at", "2020-03-05 16:54:13.261780"], ["updated_at", "2020-03-05 16:54:13.261780"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Gone Fishing!"], ["description", "One player takes the role of the two anglers and tries to catch as many fish as possible. The other player takes the role of the fish and with bluff and skill tries to hinder the anglers from catching fish. The angler player decides where to fish, but must do so in the dark (that is, he cannot really see where the fish are), as the fish cards are placed face down. Because of this, he does not know whether he is catching a fish or garbage. Also, when he is lucky enough to catch a fish, he will not know until he lands it how valuable it is. With clever movement of his fish, the fish player tries to get garbage and small fish onto the anglers hooks."], ["min_players", 2], ["max_players", 2], ["min_playtime", 40], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/16226/gone-fishing"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/agk_dDlW-2P9kGE8lU84kORfmtY=/fit-in/1200x900/filters:no_upscale()/pic74873.jpg"], ["created_at", "2020-03-05 16:54:13.268264"], ["updated_at", "2020-03-05 16:54:13.268264"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Flip & Fish"], ["description", "Flip & Fish is a fast paced, competitive 2-4 player of dexterity, tactics and luck. The goal is to be the first player to catch the required number of trophy fish, which varies by player count.\n\nPlayers take turns rolling or flicking a D12 dice from their jetty towards the cards in the middle, trying to get as close as possible to a target card. When the dice stops, a fish is caught if the dice roll (along with any bonuses) is equal or higher to the catch rate of the closest fish. Players can also use caught fish as bait, and items from the Bait & Tackle shop to increase their chances of catching fish. The game is fast to learn, but offers strategic options as players become more familiar with the game."], ["min_players", 2], ["max_players", 4], ["min_playtime", 5], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/290500/flip-fish"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/JX2W3Wz_4IssXVW_ip_Krbguge4=/fit-in/900x600/filters:no_upscale()/pic4991972.jpg"], ["created_at", "2020-03-05 16:54:13.274317"], ["updated_at", "2020-03-05 16:54:13.274317"]]
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Fish 'n' Flips"], ["description", "Fish 'n' Flips is a game about maritime animals caught in fishing nets as bycatch. Players can compete or cooperate in freeing as many as possible of them. The animals are laid out in rows and columns. On a turn, a player can play one of their two action cards. These cards can exchange positions or flip a card so the animal looks the opposite way. When several of the same animals are looking in the same direction, they will escape from the net, while any animals on top of them will slide down (tetris-style), which may lead to other groups of animals being able to escape. After each turn, another animal is added at the top of each column. When a column is seven cards high, all players lose. When all animal cards have been played, players can compare how many animals were left in the net (cooperative mode) or how many they freed (competitive mode)."], ["min_players", 1], ["max_players", 6], ["min_playtime", 15], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/288533/fish-n-flips"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/Z4N2lz56fKpGfwQclTKNeF-HcgI=/fit-in/1200x900/filters:no_upscale()/pic4944232.jpg"], ["created_at", "2020-03-05 16:54:13.282704"], ["updated_at", "2020-03-05 16:54:13.282704"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2020-03-05 10:55:32 -0600
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StoresController#home as HTML
+  Rendering stores/home.html.erb within layouts/application
+  Rendered stores/home.html.erb within layouts/application (Duration: 2.9ms | Allocations: 834)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+Completed 500 Internal Server Error in 192ms (ActiveRecord: 1.5ms | Allocations: 24883)
+
+
+  
+ActionView::Template::Error (Couldn't find Player with 'id'=9):
+    15:     <div class="content">
+    16:       <div class="topnav">
+    17:         <a>     
+    18:           <% if logged_in? %>
+    19:           <%= button_to "Logout", sessions_path, method: :delete%>
+    20:           <% else %>
+    21:           <%= button_to "Login Page", login_path, method: :get%>
+  
+app/controllers/application_controller.rb:6:in `current_player'
+app/controllers/application_controller.rb:11:in `logged_in?'
+app/views/layouts/application.html.erb:18
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStores (20200302200911)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "stores" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302200911"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameTables (20200302201117)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "game_tables" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "store_id" integer, "table_name" varchar, "seats_available" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201117"]]
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameSessions (20200302201302)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "game_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "game_table_id" integer, "game_id" integer, "session_name" varchar, "player_counter" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "game_sessions_players" ("game_session_id" integer, "player_id" integer)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_game_sessions_players_on_game_session_id" ON "game_sessions_players" ("game_session_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_game_sessions_players_on_player_id" ON "game_sessions_players" ("player_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201302"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePlayers (20200302201450)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "players" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bio" varchar, "password_digest" varchar, "age" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201450"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGames (20200302201633)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "store_id" integer, "name" varchar, "description" varchar, "min_players" integer, "max_players" integer, "min_playtime" integer, "max_playtime" integer, "link_url" varchar, "photo_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200302201633"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-05 16:56:08.619992"], ["updated_at", "2020-03-05 16:56:08.619992"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.5ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Phil's Phabulous Phantasy Phactory"], ["location", "5th street by that old tree"], ["description", "It's...definitely a place"], ["created_at", "2020-03-05 16:56:13.324106"], ["updated_at", "2020-03-05 16:56:13.324106"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phear The Reaper"], ["seats_available", 6], ["created_at", "2020-03-05 16:56:13.379261"], ["updated_at", "2020-03-05 16:56:13.379261"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.5ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phorget Your worries"], ["seats_available", 6], ["created_at", "2020-03-05 16:56:13.386340"], ["updated_at", "2020-03-05 16:56:13.386340"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phun Phor All"], ["seats_available", 8], ["created_at", "2020-03-05 16:56:13.393892"], ["updated_at", "2020-03-05 16:56:13.393892"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phree Phor All"], ["seats_available", 4], ["created_at", "2020-03-05 16:56:13.400784"], ["updated_at", "2020-03-05 16:56:13.400784"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phool's Gold"], ["seats_available", 7], ["created_at", "2020-03-05 16:56:13.407090"], ["updated_at", "2020-03-05 16:56:13.407090"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Phantasy Realm"], ["description", "Players go on one of four quests, racing against each other to satisfy the victory conditions. Each turn, a hero can move rapidly about or search the areas of the board. While searching, the hero will receive an encounter, drawn and run by another player, or play through an encounter scenario (for named areas of the board). Results can help or hinder each hero by changing stats and equipment and magic. Players can also encounter other players. Combat is by competing dice rolls, modified by stats and equipment modifiers."], ["min_players", 2], ["max_players", 4], ["min_playtime", 60], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/5877/phantasy-realm"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/yCjGXzpt8KKuJQ9WvODXwhOEysU=/fit-in/900x600/filters:no_upscale()/pic22098.jpg"], ["created_at", "2020-03-05 16:56:13.427157"], ["updated_at", "2020-03-05 16:56:13.427157"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philanthropoly"], ["description", "Philanthropoly is a card based game where players negotiate and trade with other players to collect action cards to build factories, railroad and/or ports to increase the value of the various companies. Stocks in the various companies can be bought and sold depending on the players speculations and cash flow needs. Cash is earned by the play of production cards, with the type of production dependent on what natural resource, region or city card is played in conjunction. The ultimate goal of the game is to earn enough money to buy (donate) to various philanthropic causes. The most philanthropic player at the end of the game wins."], ["min_players", 2], ["max_players", 6], ["min_playtime", 150], ["max_playtime", 300], ["link_url", "https://boardgamegeek.com/boardgame/231340/philanthropoly"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/2UiMbfni5B_4fLKQtKaU8D68fXU=/fit-in/900x600/filters:no_upscale()/pic3660122.gif"], ["created_at", "2020-03-05 16:56:13.433770"], ["updated_at", "2020-03-05 16:56:13.433770"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philadelphia"], ["description", "Philadelphia is a TCG-like card game where players aim to develop the advertising agency they work for. Earn money by placing diverse and colorful advertising cards with unique abilities, and aim for combos by combining effects to get large rewards.\n\nEarned money can be used to efficiently collect sets of cards with the same color/industry, which you can present to investors as an attractive set of advertisements, raising your reputation and gain victory points.\nWill you be able to hold down rival employees, and stand victorious?"], ["min_players", 2], ["max_players", 4], ["min_playtime", 30], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/292863/philadelphia"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/3C_OqM_-j65sYfiCzL5wUCLIvh0=/fit-in/900x600/filters:no_upscale()/pic5050826.jpg"], ["created_at", "2020-03-05 16:56:13.440255"], ["updated_at", "2020-03-05 16:56:13.440255"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philately"], ["description", "A Monopoly clone stamp collecting game. There are 4 sets of 40 different stamps plus 10 spares. Players roll the die and move around the complex track, buying, selling, swapping, collecting, inheriting stamps or gaining cash. Display your set in an album as you go. No designer is named, but my box is signed by Tina & Stef (?) Dixon.\nThe stamps are nice."], ["min_players", 2], ["max_players", 4], ["min_playtime", 90], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgame/2900/philately"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/1zaunEK8p3zES-O8_6-aHAa417M=/fit-in/900x600/filters:no_upscale()/pic3051410.jpg"], ["created_at", "2020-03-05 16:56:13.446769"], ["updated_at", "2020-03-05 16:56:13.446769"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Dan and Phil's Truth Bombs"], ["description", "In the party game Dan and Phil's Truth Bombs, you're going to write something about everyone else at the table, and they're going to write stuff about you. Can you guess who said what?"], ["min_players", 4], ["max_players", 8], ["min_playtime", 20], ["max_playtime", 20], ["link_url", "https://boardgamegeek.com/boardgame/238329/dan-and-phils-truth-bombs"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/WJhEz4HEtnZu8HBWwKza6FQ2uf8=/fit-in/1200x900/filters:no_upscale()/pic3812480.jpg"], ["created_at", "2020-03-05 16:56:13.453195"], ["updated_at", "2020-03-05 16:56:13.453195"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lizard's Lair"], ["location", "Southeast-northwest of town, just past the barn"], ["description", "Significantly smaller than a dragon's lair"], ["created_at", "2020-03-05 16:56:13.456854"], ["updated_at", "2020-03-05 16:56:13.456854"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.5ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 1"], ["seats_available", 4], ["created_at", "2020-03-05 16:56:13.466797"], ["updated_at", "2020-03-05 16:56:13.466797"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.5ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 2"], ["seats_available", 4], ["created_at", "2020-03-05 16:56:13.475190"], ["updated_at", "2020-03-05 16:56:13.475190"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "The Great Beyond"], ["seats_available", 8], ["created_at", "2020-03-05 16:56:13.482790"], ["updated_at", "2020-03-05 16:56:13.482790"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.6ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "The Battle of Lizard"], ["description", "In The Battle of Lizard, a.k.a. 蜥蓋, players each control a group of lizards on an island competing for survival — long-term survival, that is, because when breeding time arrives, these male lizards (Uta stansburiana) will fight one another for land and the right to reproduction. To succeed, you need to block others to keep them from reproducing!"], ["min_players", 2], ["max_players", 6], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/269731/battle-lizard"], ["photo_url", "https://cf.geekdo-images.com/original/img/5UB3a05fBlgACtNfKN7WtrCAtt8=/0x0/pic4885364.png"], ["created_at", "2020-03-05 16:56:13.490868"], ["updated_at", "2020-03-05 16:56:13.490868"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lords, Ladies & Lizards: The Adventure Game"], ["description", "Up to six Players get a chance to create and develop Characters through a complex journey that involves strategy, economics, politics and war! Players are able to play as either a Lord, a Lady or a Lizard, each with unique properties and leveling bonuses. Over the span of many game years, players will face personal struggles with jealousy and greed, deceit and rage! They will travel across three continents by land, by sea and by air, clearing the way of treacherous monsters. Players must choose which path to take... the way of the warrior? Or the lavish life of the landlord? They can build wealth and recognition through Theatres and entertainment. Or buy and trade treasures and build kingdoms that will rise and fall! They will be forced into war against one other all for the right to reign supreme! But there will only be one winner and that is the one who defeats the Dragon! Do YOU have what it takes to defeat the Dragon!?"], ["min_players", 2], ["max_players", 6], ["min_playtime", 120], ["max_playtime", 180], ["link_url", "https://boardgamegeek.com/boardgame/102706/lords-ladies-lizards-adventure-game"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/ak4Vr--YCzc_ezmiFa62Zd3U0VE=/fit-in/900x600/filters:no_upscale()/pic1166275.jpg"], ["created_at", "2020-03-05 16:56:13.519351"], ["updated_at", "2020-03-05 16:56:13.519351"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Terrible Lizards"], ["description", "In Terrible Lizards you build your own dinosaur and fight against the reptile of your opponent. All actions including the dino parts are represented in the play of cards."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/178610/terrible-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MWfJboXEL6FIoiPr0w3LFyuZAkc=/fit-in/900x600/filters:no_upscale()/pic2692626.jpg"], ["created_at", "2020-03-05 16:56:13.525342"], ["updated_at", "2020-03-05 16:56:13.525342"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Thrilling Expeditions: Valley of the Thunder Lizard "], ["description", "Thrilling Expeditions: Valley of the Thunder Lizard allows players to play big game hunters in a lost valley populated with creatures from before the rise of man, or have their pirates going ashore on an island where Neanderthals battle Saurians, or time traveling tourists suddenly stranded in Earth’s distant past."], ["min_players", 1], ["max_players", 6], ["min_playtime", 60], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgameexpansion/36327/thrilling-expeditions-valley-thunder-lizard"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MVr_jc8ZKyCZ-bGa86CeWRtJp7g=/fit-in/900x600/filters:no_upscale()/pic329991.jpg"], ["created_at", "2020-03-05 16:56:13.531848"], ["updated_at", "2020-03-05 16:56:13.531848"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.7ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lickin' Lizards "], ["description", "A rotating base contains bug or spider disks. Each player has a plastic lizard with an 'Elastomeric' tongue (patents no. 4,369,284 and 4,618,213) which can stretch to 750% of its normal length. Try to collect disks using the sticky, stretchy tongue. Three different variations are included."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/6570/lickin-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/a56dLg7vz-mgqCoFdMgKraaqHTw=/fit-in/900x600/filters:no_upscale()/pic1975881.jpg"], ["created_at", "2020-03-05 16:56:13.563864"], ["updated_at", "2020-03-05 16:56:13.563864"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.7ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Billy-Bob's Gaming Emporeum"], ["location", "Not there, over here"], ["description", "Board games in the front, fishin' supplies out back"], ["created_at", "2020-03-05 16:56:13.570782"], ["updated_at", "2020-03-05 16:56:13.570782"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Fish Deboning Table"], ["seats_available", 4], ["created_at", "2020-03-05 16:56:13.585478"], ["updated_at", "2020-03-05 16:56:13.585478"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Master Baiting Station"], ["seats_available", 4], ["created_at", "2020-03-05 16:56:13.591971"], ["updated_at", "2020-03-05 16:56:13.591971"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "The Gross Table"], ["seats_available", 3], ["created_at", "2020-03-05 16:56:13.597083"], ["updated_at", "2020-03-05 16:56:13.597083"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Gone Fishing!"], ["description", "One player takes the role of the two anglers and tries to catch as many fish as possible. The other player takes the role of the fish and with bluff and skill tries to hinder the anglers from catching fish. The angler player decides where to fish, but must do so in the dark (that is, he cannot really see where the fish are), as the fish cards are placed face down. Because of this, he does not know whether he is catching a fish or garbage. Also, when he is lucky enough to catch a fish, he will not know until he lands it how valuable it is. With clever movement of his fish, the fish player tries to get garbage and small fish onto the anglers hooks."], ["min_players", 2], ["max_players", 2], ["min_playtime", 40], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/16226/gone-fishing"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/agk_dDlW-2P9kGE8lU84kORfmtY=/fit-in/1200x900/filters:no_upscale()/pic74873.jpg"], ["created_at", "2020-03-05 16:56:13.603093"], ["updated_at", "2020-03-05 16:56:13.603093"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Flip & Fish"], ["description", "Flip & Fish is a fast paced, competitive 2-4 player of dexterity, tactics and luck. The goal is to be the first player to catch the required number of trophy fish, which varies by player count.\n\nPlayers take turns rolling or flicking a D12 dice from their jetty towards the cards in the middle, trying to get as close as possible to a target card. When the dice stops, a fish is caught if the dice roll (along with any bonuses) is equal or higher to the catch rate of the closest fish. Players can also use caught fish as bait, and items from the Bait & Tackle shop to increase their chances of catching fish. The game is fast to learn, but offers strategic options as players become more familiar with the game."], ["min_players", 2], ["max_players", 4], ["min_playtime", 5], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/290500/flip-fish"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/JX2W3Wz_4IssXVW_ip_Krbguge4=/fit-in/900x600/filters:no_upscale()/pic4991972.jpg"], ["created_at", "2020-03-05 16:56:13.608850"], ["updated_at", "2020-03-05 16:56:13.608850"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Fish 'n' Flips"], ["description", "Fish 'n' Flips is a game about maritime animals caught in fishing nets as bycatch. Players can compete or cooperate in freeing as many as possible of them. The animals are laid out in rows and columns. On a turn, a player can play one of their two action cards. These cards can exchange positions or flip a card so the animal looks the opposite way. When several of the same animals are looking in the same direction, they will escape from the net, while any animals on top of them will slide down (tetris-style), which may lead to other groups of animals being able to escape. After each turn, another animal is added at the top of each column. When a column is seven cards high, all players lose. When all animal cards have been played, players can compare how many animals were left in the net (cooperative mode) or how many they freed (competitive mode)."], ["min_players", 1], ["max_players", 6], ["min_playtime", 15], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/288533/fish-n-flips"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/Z4N2lz56fKpGfwQclTKNeF-HcgI=/fit-in/1200x900/filters:no_upscale()/pic4944232.jpg"], ["created_at", "2020-03-05 16:56:13.614523"], ["updated_at", "2020-03-05 16:56:13.614523"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2020-03-05 10:56:17 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by StoresController#home as HTML
+  Rendering stores/home.html.erb within layouts/application
+  Rendered stores/home.html.erb within layouts/application (Duration: 0.7ms | Allocations: 67)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.8ms | Allocations: 10112)
+
+
+  
+ActionView::Template::Error (Couldn't find Player with 'id'=9):
+    15:     <div class="content">
+    16:       <div class="topnav">
+    17:         <a>     
+    18:           <% if logged_in? %>
+    19:           <%= button_to "Logout", sessions_path, method: :delete%>
+    20:           <% else %>
+    21:           <%= button_to "Login Page", login_path, method: :get%>
+  
+app/controllers/application_controller.rb:6:in `current_player'
+app/controllers/application_controller.rb:11:in `logged_in?'
+app/views/layouts/application.html.erb:18
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.5ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Phil's Phabulous Phantasy Phactory"], ["location", "5th street by that old tree"], ["description", "It's...definitely a place"], ["created_at", "2020-03-05 16:57:29.269625"], ["updated_at", "2020-03-05 16:57:29.269625"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phear The Reaper"], ["seats_available", 6], ["created_at", "2020-03-05 16:57:29.328490"], ["updated_at", "2020-03-05 16:57:29.328490"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phorget Your worries"], ["seats_available", 6], ["created_at", "2020-03-05 16:57:29.335285"], ["updated_at", "2020-03-05 16:57:29.335285"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phun Phor All"], ["seats_available", 8], ["created_at", "2020-03-05 16:57:29.342268"], ["updated_at", "2020-03-05 16:57:29.342268"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phree Phor All"], ["seats_available", 4], ["created_at", "2020-03-05 16:57:29.348975"], ["updated_at", "2020-03-05 16:57:29.348975"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phool's Gold"], ["seats_available", 7], ["created_at", "2020-03-05 16:57:29.355767"], ["updated_at", "2020-03-05 16:57:29.355767"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Phantasy Realm"], ["description", "Players go on one of four quests, racing against each other to satisfy the victory conditions. Each turn, a hero can move rapidly about or search the areas of the board. While searching, the hero will receive an encounter, drawn and run by another player, or play through an encounter scenario (for named areas of the board). Results can help or hinder each hero by changing stats and equipment and magic. Players can also encounter other players. Combat is by competing dice rolls, modified by stats and equipment modifiers."], ["min_players", 2], ["max_players", 4], ["min_playtime", 60], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/5877/phantasy-realm"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/yCjGXzpt8KKuJQ9WvODXwhOEysU=/fit-in/900x600/filters:no_upscale()/pic22098.jpg"], ["created_at", "2020-03-05 16:57:29.375803"], ["updated_at", "2020-03-05 16:57:29.375803"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philanthropoly"], ["description", "Philanthropoly is a card based game where players negotiate and trade with other players to collect action cards to build factories, railroad and/or ports to increase the value of the various companies. Stocks in the various companies can be bought and sold depending on the players speculations and cash flow needs. Cash is earned by the play of production cards, with the type of production dependent on what natural resource, region or city card is played in conjunction. The ultimate goal of the game is to earn enough money to buy (donate) to various philanthropic causes. The most philanthropic player at the end of the game wins."], ["min_players", 2], ["max_players", 6], ["min_playtime", 150], ["max_playtime", 300], ["link_url", "https://boardgamegeek.com/boardgame/231340/philanthropoly"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/2UiMbfni5B_4fLKQtKaU8D68fXU=/fit-in/900x600/filters:no_upscale()/pic3660122.gif"], ["created_at", "2020-03-05 16:57:29.382571"], ["updated_at", "2020-03-05 16:57:29.382571"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philadelphia"], ["description", "Philadelphia is a TCG-like card game where players aim to develop the advertising agency they work for. Earn money by placing diverse and colorful advertising cards with unique abilities, and aim for combos by combining effects to get large rewards.\n\nEarned money can be used to efficiently collect sets of cards with the same color/industry, which you can present to investors as an attractive set of advertisements, raising your reputation and gain victory points.\nWill you be able to hold down rival employees, and stand victorious?"], ["min_players", 2], ["max_players", 4], ["min_playtime", 30], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/292863/philadelphia"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/3C_OqM_-j65sYfiCzL5wUCLIvh0=/fit-in/900x600/filters:no_upscale()/pic5050826.jpg"], ["created_at", "2020-03-05 16:57:29.389945"], ["updated_at", "2020-03-05 16:57:29.389945"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philately"], ["description", "A Monopoly clone stamp collecting game. There are 4 sets of 40 different stamps plus 10 spares. Players roll the die and move around the complex track, buying, selling, swapping, collecting, inheriting stamps or gaining cash. Display your set in an album as you go. No designer is named, but my box is signed by Tina & Stef (?) Dixon.\nThe stamps are nice."], ["min_players", 2], ["max_players", 4], ["min_playtime", 90], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgame/2900/philately"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/1zaunEK8p3zES-O8_6-aHAa417M=/fit-in/900x600/filters:no_upscale()/pic3051410.jpg"], ["created_at", "2020-03-05 16:57:29.396527"], ["updated_at", "2020-03-05 16:57:29.396527"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Dan and Phil's Truth Bombs"], ["description", "In the party game Dan and Phil's Truth Bombs, you're going to write something about everyone else at the table, and they're going to write stuff about you. Can you guess who said what?"], ["min_players", 4], ["max_players", 8], ["min_playtime", 20], ["max_playtime", 20], ["link_url", "https://boardgamegeek.com/boardgame/238329/dan-and-phils-truth-bombs"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/WJhEz4HEtnZu8HBWwKza6FQ2uf8=/fit-in/1200x900/filters:no_upscale()/pic3812480.jpg"], ["created_at", "2020-03-05 16:57:29.403321"], ["updated_at", "2020-03-05 16:57:29.403321"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lizard's Lair"], ["location", "Southeast-northwest of town, just past the barn"], ["description", "Significantly smaller than a dragon's lair"], ["created_at", "2020-03-05 16:57:29.407283"], ["updated_at", "2020-03-05 16:57:29.407283"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 1"], ["seats_available", 4], ["created_at", "2020-03-05 16:57:29.415315"], ["updated_at", "2020-03-05 16:57:29.415315"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 2"], ["seats_available", 4], ["created_at", "2020-03-05 16:57:29.421760"], ["updated_at", "2020-03-05 16:57:29.421760"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "The Great Beyond"], ["seats_available", 8], ["created_at", "2020-03-05 16:57:29.427908"], ["updated_at", "2020-03-05 16:57:29.427908"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "The Battle of Lizard"], ["description", "In The Battle of Lizard, a.k.a. 蜥蓋, players each control a group of lizards on an island competing for survival — long-term survival, that is, because when breeding time arrives, these male lizards (Uta stansburiana) will fight one another for land and the right to reproduction. To succeed, you need to block others to keep them from reproducing!"], ["min_players", 2], ["max_players", 6], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/269731/battle-lizard"], ["photo_url", "https://cf.geekdo-images.com/original/img/5UB3a05fBlgACtNfKN7WtrCAtt8=/0x0/pic4885364.png"], ["created_at", "2020-03-05 16:57:29.434374"], ["updated_at", "2020-03-05 16:57:29.434374"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lords, Ladies & Lizards: The Adventure Game"], ["description", "Up to six Players get a chance to create and develop Characters through a complex journey that involves strategy, economics, politics and war! Players are able to play as either a Lord, a Lady or a Lizard, each with unique properties and leveling bonuses. Over the span of many game years, players will face personal struggles with jealousy and greed, deceit and rage! They will travel across three continents by land, by sea and by air, clearing the way of treacherous monsters. Players must choose which path to take... the way of the warrior? Or the lavish life of the landlord? They can build wealth and recognition through Theatres and entertainment. Or buy and trade treasures and build kingdoms that will rise and fall! They will be forced into war against one other all for the right to reign supreme! But there will only be one winner and that is the one who defeats the Dragon! Do YOU have what it takes to defeat the Dragon!?"], ["min_players", 2], ["max_players", 6], ["min_playtime", 120], ["max_playtime", 180], ["link_url", "https://boardgamegeek.com/boardgame/102706/lords-ladies-lizards-adventure-game"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/ak4Vr--YCzc_ezmiFa62Zd3U0VE=/fit-in/900x600/filters:no_upscale()/pic1166275.jpg"], ["created_at", "2020-03-05 16:57:29.440648"], ["updated_at", "2020-03-05 16:57:29.440648"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Terrible Lizards"], ["description", "In Terrible Lizards you build your own dinosaur and fight against the reptile of your opponent. All actions including the dino parts are represented in the play of cards."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/178610/terrible-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MWfJboXEL6FIoiPr0w3LFyuZAkc=/fit-in/900x600/filters:no_upscale()/pic2692626.jpg"], ["created_at", "2020-03-05 16:57:29.447265"], ["updated_at", "2020-03-05 16:57:29.447265"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.8ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Thrilling Expeditions: Valley of the Thunder Lizard "], ["description", "Thrilling Expeditions: Valley of the Thunder Lizard allows players to play big game hunters in a lost valley populated with creatures from before the rise of man, or have their pirates going ashore on an island where Neanderthals battle Saurians, or time traveling tourists suddenly stranded in Earth’s distant past."], ["min_players", 1], ["max_players", 6], ["min_playtime", 60], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgameexpansion/36327/thrilling-expeditions-valley-thunder-lizard"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MVr_jc8ZKyCZ-bGa86CeWRtJp7g=/fit-in/900x600/filters:no_upscale()/pic329991.jpg"], ["created_at", "2020-03-05 16:57:29.506766"], ["updated_at", "2020-03-05 16:57:29.506766"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lickin' Lizards "], ["description", "A rotating base contains bug or spider disks. Each player has a plastic lizard with an 'Elastomeric' tongue (patents no. 4,369,284 and 4,618,213) which can stretch to 750% of its normal length. Try to collect disks using the sticky, stretchy tongue. Three different variations are included."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/6570/lickin-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/a56dLg7vz-mgqCoFdMgKraaqHTw=/fit-in/900x600/filters:no_upscale()/pic1975881.jpg"], ["created_at", "2020-03-05 16:57:29.519020"], ["updated_at", "2020-03-05 16:57:29.519020"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.6ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Billy-Bob's Gaming Emporeum"], ["location", "Not there, over here"], ["description", "Board games in the front, fishin' supplies out back"], ["created_at", "2020-03-05 16:57:29.524558"], ["updated_at", "2020-03-05 16:57:29.524558"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Fish Deboning Table"], ["seats_available", 4], ["created_at", "2020-03-05 16:57:29.535385"], ["updated_at", "2020-03-05 16:57:29.535385"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Master Baiting Station"], ["seats_available", 4], ["created_at", "2020-03-05 16:57:29.543268"], ["updated_at", "2020-03-05 16:57:29.543268"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.3ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "The Gross Table"], ["seats_available", 3], ["created_at", "2020-03-05 16:57:29.550707"], ["updated_at", "2020-03-05 16:57:29.550707"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Gone Fishing!"], ["description", "One player takes the role of the two anglers and tries to catch as many fish as possible. The other player takes the role of the fish and with bluff and skill tries to hinder the anglers from catching fish. The angler player decides where to fish, but must do so in the dark (that is, he cannot really see where the fish are), as the fish cards are placed face down. Because of this, he does not know whether he is catching a fish or garbage. Also, when he is lucky enough to catch a fish, he will not know until he lands it how valuable it is. With clever movement of his fish, the fish player tries to get garbage and small fish onto the anglers hooks."], ["min_players", 2], ["max_players", 2], ["min_playtime", 40], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/16226/gone-fishing"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/agk_dDlW-2P9kGE8lU84kORfmtY=/fit-in/1200x900/filters:no_upscale()/pic74873.jpg"], ["created_at", "2020-03-05 16:57:29.556763"], ["updated_at", "2020-03-05 16:57:29.556763"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Flip & Fish"], ["description", "Flip & Fish is a fast paced, competitive 2-4 player of dexterity, tactics and luck. The goal is to be the first player to catch the required number of trophy fish, which varies by player count.\n\nPlayers take turns rolling or flicking a D12 dice from their jetty towards the cards in the middle, trying to get as close as possible to a target card. When the dice stops, a fish is caught if the dice roll (along with any bonuses) is equal or higher to the catch rate of the closest fish. Players can also use caught fish as bait, and items from the Bait & Tackle shop to increase their chances of catching fish. The game is fast to learn, but offers strategic options as players become more familiar with the game."], ["min_players", 2], ["max_players", 4], ["min_playtime", 5], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/290500/flip-fish"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/JX2W3Wz_4IssXVW_ip_Krbguge4=/fit-in/900x600/filters:no_upscale()/pic4991972.jpg"], ["created_at", "2020-03-05 16:57:29.563182"], ["updated_at", "2020-03-05 16:57:29.563182"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Fish 'n' Flips"], ["description", "Fish 'n' Flips is a game about maritime animals caught in fishing nets as bycatch. Players can compete or cooperate in freeing as many as possible of them. The animals are laid out in rows and columns. On a turn, a player can play one of their two action cards. These cards can exchange positions or flip a card so the animal looks the opposite way. When several of the same animals are looking in the same direction, they will escape from the net, while any animals on top of them will slide down (tetris-style), which may lead to other groups of animals being able to escape. After each turn, another animal is added at the top of each column. When a column is seven cards high, all players lose. When all animal cards have been played, players can compare how many animals were left in the net (cooperative mode) or how many they freed (competitive mode)."], ["min_players", 1], ["max_players", 6], ["min_playtime", 15], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/288533/fish-n-flips"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/Z4N2lz56fKpGfwQclTKNeF-HcgI=/fit-in/1200x900/filters:no_upscale()/pic4944232.jpg"], ["created_at", "2020-03-05 16:57:29.569227"], ["updated_at", "2020-03-05 16:57:29.569227"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2020-03-05 10:57:33 -0600
+Processing by StoresController#home as HTML
+  Rendering stores/home.html.erb within layouts/application
+  Rendered stores/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 59)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.2ms | Allocations: 5484)
+
+
+  
+ActionView::Template::Error (Couldn't find Player with 'id'=9):
+    15:     <div class="content">
+    16:       <div class="topnav">
+    17:         <a>     
+    18:           <% if logged_in? %>
+    19:           <%= button_to "Logout", sessions_path, method: :delete%>
+    20:           <% else %>
+    21:           <%= button_to "Login Page", login_path, method: :get%>
+  
+app/controllers/application_controller.rb:6:in `current_player'
+app/controllers/application_controller.rb:11:in `logged_in?'
+app/views/layouts/application.html.erb:18
+Started GET "/players" for ::1 at 2020-03-05 10:58:14 -0600
+Processing by PlayersController#index as HTML
+  Rendering players/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/players/index.html.erb:4
+  Rendered players/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 879)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.4ms | Allocations: 6909)
+
+
+  
+ActionView::Template::Error (Couldn't find Player with 'id'=9):
+    15:     <div class="content">
+    16:       <div class="topnav">
+    17:         <a>     
+    18:           <% if logged_in? %>
+    19:           <%= button_to "Logout", sessions_path, method: :delete%>
+    20:           <% else %>
+    21:           <%= button_to "Login Page", login_path, method: :get%>
+  
+app/controllers/application_controller.rb:6:in `current_player'
+app/controllers/application_controller.rb:11:in `logged_in?'
+app/views/layouts/application.html.erb:18
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.6ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Phil's Phabulous Phantasy Phactory"], ["location", "5th street by that old tree"], ["description", "It's...definitely a place"], ["created_at", "2020-03-05 16:58:55.225484"], ["updated_at", "2020-03-05 16:58:55.225484"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phear The Reaper"], ["seats_available", 6], ["created_at", "2020-03-05 16:58:55.287421"], ["updated_at", "2020-03-05 16:58:55.287421"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.5ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phorget Your worries"], ["seats_available", 6], ["created_at", "2020-03-05 16:58:55.294512"], ["updated_at", "2020-03-05 16:58:55.294512"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phun Phor All"], ["seats_available", 8], ["created_at", "2020-03-05 16:58:55.301990"], ["updated_at", "2020-03-05 16:58:55.301990"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phree Phor All"], ["seats_available", 4], ["created_at", "2020-03-05 16:58:55.309382"], ["updated_at", "2020-03-05 16:58:55.309382"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 1], ["table_name", "Phool's Gold"], ["seats_available", 7], ["created_at", "2020-03-05 16:58:55.315900"], ["updated_at", "2020-03-05 16:58:55.315900"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Phantasy Realm"], ["description", "Players go on one of four quests, racing against each other to satisfy the victory conditions. Each turn, a hero can move rapidly about or search the areas of the board. While searching, the hero will receive an encounter, drawn and run by another player, or play through an encounter scenario (for named areas of the board). Results can help or hinder each hero by changing stats and equipment and magic. Players can also encounter other players. Combat is by competing dice rolls, modified by stats and equipment modifiers."], ["min_players", 2], ["max_players", 4], ["min_playtime", 60], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/5877/phantasy-realm"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/yCjGXzpt8KKuJQ9WvODXwhOEysU=/fit-in/900x600/filters:no_upscale()/pic22098.jpg"], ["created_at", "2020-03-05 16:58:55.336802"], ["updated_at", "2020-03-05 16:58:55.336802"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philanthropoly"], ["description", "Philanthropoly is a card based game where players negotiate and trade with other players to collect action cards to build factories, railroad and/or ports to increase the value of the various companies. Stocks in the various companies can be bought and sold depending on the players speculations and cash flow needs. Cash is earned by the play of production cards, with the type of production dependent on what natural resource, region or city card is played in conjunction. The ultimate goal of the game is to earn enough money to buy (donate) to various philanthropic causes. The most philanthropic player at the end of the game wins."], ["min_players", 2], ["max_players", 6], ["min_playtime", 150], ["max_playtime", 300], ["link_url", "https://boardgamegeek.com/boardgame/231340/philanthropoly"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/2UiMbfni5B_4fLKQtKaU8D68fXU=/fit-in/900x600/filters:no_upscale()/pic3660122.gif"], ["created_at", "2020-03-05 16:58:55.343927"], ["updated_at", "2020-03-05 16:58:55.343927"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philadelphia"], ["description", "Philadelphia is a TCG-like card game where players aim to develop the advertising agency they work for. Earn money by placing diverse and colorful advertising cards with unique abilities, and aim for combos by combining effects to get large rewards.\n\nEarned money can be used to efficiently collect sets of cards with the same color/industry, which you can present to investors as an attractive set of advertisements, raising your reputation and gain victory points.\nWill you be able to hold down rival employees, and stand victorious?"], ["min_players", 2], ["max_players", 4], ["min_playtime", 30], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/292863/philadelphia"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/3C_OqM_-j65sYfiCzL5wUCLIvh0=/fit-in/900x600/filters:no_upscale()/pic5050826.jpg"], ["created_at", "2020-03-05 16:58:55.350721"], ["updated_at", "2020-03-05 16:58:55.350721"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Philately"], ["description", "A Monopoly clone stamp collecting game. There are 4 sets of 40 different stamps plus 10 spares. Players roll the die and move around the complex track, buying, selling, swapping, collecting, inheriting stamps or gaining cash. Display your set in an album as you go. No designer is named, but my box is signed by Tina & Stef (?) Dixon.\nThe stamps are nice."], ["min_players", 2], ["max_players", 4], ["min_playtime", 90], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgame/2900/philately"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/1zaunEK8p3zES-O8_6-aHAa417M=/fit-in/900x600/filters:no_upscale()/pic3051410.jpg"], ["created_at", "2020-03-05 16:58:55.357214"], ["updated_at", "2020-03-05 16:58:55.357214"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 1], ["name", "Dan and Phil's Truth Bombs"], ["description", "In the party game Dan and Phil's Truth Bombs, you're going to write something about everyone else at the table, and they're going to write stuff about you. Can you guess who said what?"], ["min_players", 4], ["max_players", 8], ["min_playtime", 20], ["max_playtime", 20], ["link_url", "https://boardgamegeek.com/boardgame/238329/dan-and-phils-truth-bombs"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/WJhEz4HEtnZu8HBWwKza6FQ2uf8=/fit-in/1200x900/filters:no_upscale()/pic3812480.jpg"], ["created_at", "2020-03-05 16:58:55.363865"], ["updated_at", "2020-03-05 16:58:55.363865"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lizard's Lair"], ["location", "Southeast-northwest of town, just past the barn"], ["description", "Significantly smaller than a dragon's lair"], ["created_at", "2020-03-05 16:58:55.367768"], ["updated_at", "2020-03-05 16:58:55.367768"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.5ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 1"], ["seats_available", 4], ["created_at", "2020-03-05 16:58:55.375194"], ["updated_at", "2020-03-05 16:58:55.375194"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "Mini Table 2"], ["seats_available", 4], ["created_at", "2020-03-05 16:58:55.382363"], ["updated_at", "2020-03-05 16:58:55.382363"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 2], ["table_name", "The Great Beyond"], ["seats_available", 8], ["created_at", "2020-03-05 16:58:55.389144"], ["updated_at", "2020-03-05 16:58:55.389144"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "The Battle of Lizard"], ["description", "In The Battle of Lizard, a.k.a. 蜥蓋, players each control a group of lizards on an island competing for survival — long-term survival, that is, because when breeding time arrives, these male lizards (Uta stansburiana) will fight one another for land and the right to reproduction. To succeed, you need to block others to keep them from reproducing!"], ["min_players", 2], ["max_players", 6], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/269731/battle-lizard"], ["photo_url", "https://cf.geekdo-images.com/original/img/5UB3a05fBlgACtNfKN7WtrCAtt8=/0x0/pic4885364.png"], ["created_at", "2020-03-05 16:58:55.395299"], ["updated_at", "2020-03-05 16:58:55.395299"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lords, Ladies & Lizards: The Adventure Game"], ["description", "Up to six Players get a chance to create and develop Characters through a complex journey that involves strategy, economics, politics and war! Players are able to play as either a Lord, a Lady or a Lizard, each with unique properties and leveling bonuses. Over the span of many game years, players will face personal struggles with jealousy and greed, deceit and rage! They will travel across three continents by land, by sea and by air, clearing the way of treacherous monsters. Players must choose which path to take... the way of the warrior? Or the lavish life of the landlord? They can build wealth and recognition through Theatres and entertainment. Or buy and trade treasures and build kingdoms that will rise and fall! They will be forced into war against one other all for the right to reign supreme! But there will only be one winner and that is the one who defeats the Dragon! Do YOU have what it takes to defeat the Dragon!?"], ["min_players", 2], ["max_players", 6], ["min_playtime", 120], ["max_playtime", 180], ["link_url", "https://boardgamegeek.com/boardgame/102706/lords-ladies-lizards-adventure-game"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/ak4Vr--YCzc_ezmiFa62Zd3U0VE=/fit-in/900x600/filters:no_upscale()/pic1166275.jpg"], ["created_at", "2020-03-05 16:58:55.402290"], ["updated_at", "2020-03-05 16:58:55.402290"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Terrible Lizards"], ["description", "In Terrible Lizards you build your own dinosaur and fight against the reptile of your opponent. All actions including the dino parts are represented in the play of cards."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/178610/terrible-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MWfJboXEL6FIoiPr0w3LFyuZAkc=/fit-in/900x600/filters:no_upscale()/pic2692626.jpg"], ["created_at", "2020-03-05 16:58:55.434129"], ["updated_at", "2020-03-05 16:58:55.434129"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Thrilling Expeditions: Valley of the Thunder Lizard "], ["description", "Thrilling Expeditions: Valley of the Thunder Lizard allows players to play big game hunters in a lost valley populated with creatures from before the rise of man, or have their pirates going ashore on an island where Neanderthals battle Saurians, or time traveling tourists suddenly stranded in Earth’s distant past."], ["min_players", 1], ["max_players", 6], ["min_playtime", 60], ["max_playtime", 90], ["link_url", "https://boardgamegeek.com/boardgameexpansion/36327/thrilling-expeditions-valley-thunder-lizard"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/MVr_jc8ZKyCZ-bGa86CeWRtJp7g=/fit-in/900x600/filters:no_upscale()/pic329991.jpg"], ["created_at", "2020-03-05 16:58:55.469651"], ["updated_at", "2020-03-05 16:58:55.469651"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 2], ["name", "Lickin' Lizards "], ["description", "A rotating base contains bug or spider disks. Each player has a plastic lizard with an 'Elastomeric' tongue (patents no. 4,369,284 and 4,618,213) which can stretch to 750% of its normal length. Try to collect disks using the sticky, stretchy tongue. Three different variations are included."], ["min_players", 2], ["max_players", 4], ["min_playtime", 20], ["max_playtime", 40], ["link_url", "https://boardgamegeek.com/boardgame/6570/lickin-lizards"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/a56dLg7vz-mgqCoFdMgKraaqHTw=/fit-in/900x600/filters:no_upscale()/pic1975881.jpg"], ["created_at", "2020-03-05 16:58:55.478127"], ["updated_at", "2020-03-05 16:58:55.478127"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Create (0.4ms)[0m  [1m[32mINSERT INTO "stores" ("name", "location", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Billy-Bob's Gaming Emporeum"], ["location", "Not there, over here"], ["description", "Board games in the front, fishin' supplies out back"], ["created_at", "2020-03-05 16:58:55.482706"], ["updated_at", "2020-03-05 16:58:55.482706"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.5ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Fish Deboning Table"], ["seats_available", 4], ["created_at", "2020-03-05 16:58:55.491454"], ["updated_at", "2020-03-05 16:58:55.491454"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "Master Baiting Station"], ["seats_available", 4], ["created_at", "2020-03-05 16:58:55.499669"], ["updated_at", "2020-03-05 16:58:55.499669"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGameTable Create (0.4ms)[0m  [1m[32mINSERT INTO "game_tables" ("store_id", "table_name", "seats_available", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["store_id", 3], ["table_name", "The Gross Table"], ["seats_available", 3], ["created_at", "2020-03-05 16:58:55.506808"], ["updated_at", "2020-03-05 16:58:55.506808"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.3ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Gone Fishing!"], ["description", "One player takes the role of the two anglers and tries to catch as many fish as possible. The other player takes the role of the fish and with bluff and skill tries to hinder the anglers from catching fish. The angler player decides where to fish, but must do so in the dark (that is, he cannot really see where the fish are), as the fish cards are placed face down. Because of this, he does not know whether he is catching a fish or garbage. Also, when he is lucky enough to catch a fish, he will not know until he lands it how valuable it is. With clever movement of his fish, the fish player tries to get garbage and small fish onto the anglers hooks."], ["min_players", 2], ["max_players", 2], ["min_playtime", 40], ["max_playtime", 60], ["link_url", "https://boardgamegeek.com/boardgame/16226/gone-fishing"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/agk_dDlW-2P9kGE8lU84kORfmtY=/fit-in/1200x900/filters:no_upscale()/pic74873.jpg"], ["created_at", "2020-03-05 16:58:55.512862"], ["updated_at", "2020-03-05 16:58:55.512862"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Flip & Fish"], ["description", "Flip & Fish is a fast paced, competitive 2-4 player of dexterity, tactics and luck. The goal is to be the first player to catch the required number of trophy fish, which varies by player count.\n\nPlayers take turns rolling or flicking a D12 dice from their jetty towards the cards in the middle, trying to get as close as possible to a target card. When the dice stops, a fish is caught if the dice roll (along with any bonuses) is equal or higher to the catch rate of the closest fish. Players can also use caught fish as bait, and items from the Bait & Tackle shop to increase their chances of catching fish. The game is fast to learn, but offers strategic options as players become more familiar with the game."], ["min_players", 2], ["max_players", 4], ["min_playtime", 5], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/290500/flip-fish"], ["photo_url", "https://cf.geekdo-images.com/imagepage/img/JX2W3Wz_4IssXVW_ip_Krbguge4=/fit-in/900x600/filters:no_upscale()/pic4991972.jpg"], ["created_at", "2020-03-05 16:58:55.518981"], ["updated_at", "2020-03-05 16:58:55.518981"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("store_id", "name", "description", "min_players", "max_players", "min_playtime", "max_playtime", "link_url", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["store_id", 3], ["name", "Fish 'n' Flips"], ["description", "Fish 'n' Flips is a game about maritime animals caught in fishing nets as bycatch. Players can compete or cooperate in freeing as many as possible of them. The animals are laid out in rows and columns. On a turn, a player can play one of their two action cards. These cards can exchange positions or flip a card so the animal looks the opposite way. When several of the same animals are looking in the same direction, they will escape from the net, while any animals on top of them will slide down (tetris-style), which may lead to other groups of animals being able to escape. After each turn, another animal is added at the top of each column. When a column is seven cards high, all players lose. When all animal cards have been played, players can compare how many animals were left in the net (cooperative mode) or how many they freed (competitive mode)."], ["min_players", 1], ["max_players", 6], ["min_playtime", 15], ["max_playtime", 30], ["link_url", "https://boardgamegeek.com/boardgame/288533/fish-n-flips"], ["photo_url", "https://cf.geekdo-images.com/imagepagezoom/img/Z4N2lz56fKpGfwQclTKNeF-HcgI=/fit-in/1200x900/filters:no_upscale()/pic4944232.jpg"], ["created_at", "2020-03-05 16:58:55.525304"], ["updated_at", "2020-03-05 16:58:55.525304"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" ORDER BY "players"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/" for ::1 at 2020-03-05 10:59:38 -0600
+Processing by StoresController#home as HTML
+  Rendering stores/home.html.erb within layouts/application
+  Rendered stores/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 65)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.3ms | Allocations: 5496)
+
+
+  
+ActionView::Template::Error (Couldn't find Player with 'id'=9):
+    15:     <div class="content">
+    16:       <div class="topnav">
+    17:         <a>     
+    18:           <% if logged_in? %>
+    19:           <%= button_to "Logout", sessions_path, method: :delete%>
+    20:           <% else %>
+    21:           <%= button_to "Login Page", login_path, method: :get%>
+  
+app/controllers/application_controller.rb:6:in `current_player'
+app/controllers/application_controller.rb:11:in `logged_in?'
+app/views/layouts/application.html.erb:18
+Started GET "/" for ::1 at 2020-03-05 11:01:06 -0600
+Processing by StoresController#home as HTML
+  Rendering stores/home.html.erb within layouts/application
+  Rendered stores/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 58)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.2ms | Allocations: 5466)
+
+
+  
+ActionView::Template::Error (Couldn't find Player with 'id'=9):
+    15:     <div class="content">
+    16:       <div class="topnav">
+    17:         <a>     
+    18:           <% if logged_in? %>
+    19:           <%= button_to "Logout", sessions_path, method: :delete%>
+    20:           <% else %>
+    21:           <%= button_to "Login Page", login_path, method: :get%>
+  
+app/controllers/application_controller.rb:6:in `current_player'
+app/controllers/application_controller.rb:11:in `logged_in?'
+app/views/layouts/application.html.erb:18
+Started GET "/" for ::1 at 2020-03-05 11:01:32 -0600
+Processing by StoresController#home as HTML
+  Rendering stores/home.html.erb within layouts/application
+  Rendered stores/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 58)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 43ms (Views: 40.4ms | ActiveRecord: 1.6ms | Allocations: 13802)
+
+
+Started GET "/players/new" for ::1 at 2020-03-05 11:01:40 -0600
+Processing by PlayersController#new as HTML
+  Rendering players/new.html.erb within layouts/application
+  Rendered players/new.html.erb within layouts/application (Duration: 24.7ms | Allocations: 3363)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 56ms (Views: 39.6ms | ActiveRecord: 0.5ms | Allocations: 13051)
+
+
+Started POST "/players" for ::1 at 2020-03-05 11:01:56 -0600
+Processing by PlayersController#create as HTML
+  Parameters: {"authenticity_token"=>"Oe6DSqXoDNiLaYYBgagvZY/nlOCElRO1zwXiGSHroghKWy9BimS6NOL7zpDQuNWH+cHlXP9foTECtqPT8uD/DQ==", "player"=>{"name"=>"sammy", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "bio"=>"This is sammy", "age"=>"24"}, "commit"=>"Create Player"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/players_controller.rb:13:in `create'
+  [1m[36mPlayer Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "players" WHERE "players"."name" = ? LIMIT ?[0m  [["name", "sammy"], ["LIMIT", 1]]
+  ↳ app/controllers/players_controller.rb:13:in `create'
+  [1m[36mPlayer Create (0.6ms)[0m  [1m[32mINSERT INTO "players" ("name", "bio", "password_digest", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "sammy"], ["bio", "This is sammy"], ["password_digest", "$2a$10$ZEfTGirC/4ZDSHVulCaYxuGoBNIkWYhRFvyDcWx8wMftzTAbQkyse"], ["age", 24], ["created_at", "2020-03-05 17:01:56.359760"], ["updated_at", "2020-03-05 17:01:56.359760"]]
+  ↳ app/controllers/players_controller.rb:13:in `create'
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/players_controller.rb:13:in `create'
+  [1m[36mPlayer Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "players" WHERE "players"."name" = ? AND "players"."id" != ? LIMIT ?[0m  [["name", "sammy"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/players_controller.rb:14:in `create'
+  [1m[36mCACHE Player Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "players" WHERE "players"."name" = ? AND "players"."id" != ? LIMIT ?[0m  [["name", "sammy"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/players_controller.rb:15:in `create'
+Redirected to http://localhost:3000/players/1
+Completed 302 Found in 93ms (ActiveRecord: 3.2ms | Allocations: 6569)
+
+
+Started GET "/players/1" for ::1 at 2020-03-05 11:01:56 -0600
+Processing by PlayersController#show as HTML
+  Parameters: {"id"=>"1"}
+Redirected to http://localhost:3000/login
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 470)
+
+
+Started GET "/login" for ::1 at 2020-03-05 11:01:56 -0600
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 568)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 18ms (Views: 16.3ms | ActiveRecord: 0.4ms | Allocations: 6812)
+
+
+Started GET "/games" for ::1 at 2020-03-05 11:01:59 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:8
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 4]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 5]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 6]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 7]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 8]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 9]]
+  ↳ app/views/games/index.html.erb:11
+  Rendered games/index.html.erb within layouts/application (Duration: 58.0ms | Allocations: 19467)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mCACHE Store Load (0.0ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 85ms (Views: 72.2ms | ActiveRecord: 3.8ms | Allocations: 26969)
+
+
+Started GET "/games/1" for ::1 at 2020-03-05 11:02:01 -0600
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:7:in `show'
+  Rendering games/show.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/views/games/show.html.erb:19
+  Rendered games/show.html.erb within layouts/application (Duration: 30.8ms | Allocations: 4871)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 48ms (Views: 42.5ms | ActiveRecord: 1.5ms | Allocations: 11255)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-05 11:02:04 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.3ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:11
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 848)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 32ms (Views: 28.6ms | ActiveRecord: 1.1ms | Allocations: 7092)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-05 11:02:13 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 427)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.4ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 43ms (Views: 26.7ms | ActiveRecord: 2.0ms | Allocations: 10320)
+
+
+Started GET "/players/new" for ::1 at 2020-03-05 11:02:18 -0600
+Processing by PlayersController#new as HTML
+  Rendering players/new.html.erb within layouts/application
+  Rendered players/new.html.erb within layouts/application (Duration: 7.9ms | Allocations: 1179)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (2.5ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 42ms (Views: 37.2ms | ActiveRecord: 2.7ms | Allocations: 6888)
+
+
+Started GET "/login" for ::1 at 2020-03-05 11:02:20 -0600
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 325)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 35ms (Views: 31.3ms | ActiveRecord: 0.4ms | Allocations: 6022)
+
+
+Started POST "/sessions" for ::1 at 2020-03-05 11:02:26 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"8WMPbBNWocQmmSU60dSlacOVNCKEtjGMl/45o9zNPeyfUxlsXvLhmDRBe24B0sPhEdxVRAmkz91bBMLzkR6riQ==", "name"=>"sammy", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mPlayer Load (1.5ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."name" = ? LIMIT ?[0m  [["name", "sammy"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://localhost:3000/players/1
+Completed 302 Found in 89ms (ActiveRecord: 1.5ms | Allocations: 1165)
+
+
+Started GET "/players/1" for ::1 at 2020-03-05 11:02:27 -0600
+Processing by PlayersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/players_controller.rb:24:in `show'
+  Rendering players/show.html.erb within layouts/application
+  Rendered players/show.html.erb within layouts/application (Duration: 20.0ms | Allocations: 329)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE Player Load (0.0ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 37ms (Views: 30.5ms | ActiveRecord: 0.6ms | Allocations: 7714)
+
+
+Started GET "/game_sessions" for ::1 at 2020-03-05 11:02:33 -0600
+Processing by GameSessionsController#index as HTML
+  Rendering game_sessions/index.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions"[0m
+  ↳ app/views/game_sessions/index.html.erb:11
+  Rendered game_sessions/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 593)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 30ms (Views: 26.0ms | ActiveRecord: 1.1ms | Allocations: 6908)
+
+
+Started GET "/game_sessions/new" for ::1 at 2020-03-05 11:02:34 -0600
+Processing by GameSessionsController#new as HTML
+  Rendering game_sessions/new.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mGame Load (0.7ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/views/game_sessions/new.html.erb:14
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables"[0m
+  ↳ app/views/game_sessions/new.html.erb:17
+  Rendered game_sessions/new.html.erb within layouts/application (Duration: 25.8ms | Allocations: 10792)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE Player Load (0.0ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 42ms (Views: 38.4ms | ActiveRecord: 2.2ms | Allocations: 17044)
+
+
+Started POST "/game_sessions" for ::1 at 2020-03-05 11:02:51 -0600
+Processing by GameSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"J7HI2cXZy91Cm0P7NaNKrjtX3JSDstgFrowkRpgVwUky5k8oYw/zuAaY7tGUuPDboLf2YsUsxzi1ZSIiPTpM2w==", "game_session"=>{"session_name"=>"Sammy Davis joint", "game_id"=>"1", "game_table_id"=>"1"}, "commit"=>"Create Game session"}
+  [1m[36mGameTable Load (1.0ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:17:in `create'
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:17:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:18:in `create'
+  [1m[36mGameSession Create (0.8ms)[0m  [1m[32mINSERT INTO "game_sessions" ("game_table_id", "game_id", "session_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["game_table_id", 1], ["game_id", 1], ["session_name", "Sammy Davis joint"], ["created_at", "2020-03-05 17:02:51.469639"], ["updated_at", "2020-03-05 17:02:51.469639"]]
+  ↳ app/controllers/game_sessions_controller.rb:18:in `create'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:18:in `create'
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:19:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:20:in `create'
+  [1m[36mGameSession::HABTM_Players Create (0.5ms)[0m  [1m[32mINSERT INTO "game_sessions_players" ("game_session_id", "player_id") VALUES (?, ?)[0m  [["game_session_id", 1], ["player_id", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:20:in `create'
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/game_sessions_controller.rb:20:in `create'
+Redirected to http://localhost:3000/game_sessions/1
+Completed 302 Found in 48ms (ActiveRecord: 7.0ms | Allocations: 15030)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-05 11:02:51 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.1ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.4ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 31.7ms | Allocations: 6538)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 47ms (Views: 42.5ms | ActiveRecord: 1.6ms | Allocations: 13512)
+
+
+Started GET "/games" for ::1 at 2020-03-05 11:02:58 -0600
+Processing by GamesController#index as HTML
+  Rendering games/index.html.erb within layouts/application
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/games/index.html.erb:8
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 1]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 2]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 3]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 4]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 5]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 6]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 7]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 8]]
+  ↳ app/views/games/index.html.erb:11
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."store_id" = ?[0m  [["store_id", 9]]
+  ↳ app/views/games/index.html.erb:11
+  Rendered games/index.html.erb within layouts/application (Duration: 39.7ms | Allocations: 8649)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mCACHE Store Load (0.0ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 60ms (Views: 55.1ms | ActiveRecord: 3.7ms | Allocations: 14842)
+
+
+Started GET "/games/1" for ::1 at 2020-03-05 11:03:00 -0600
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGame Load (1.0ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:7:in `show'
+  Rendering games/show.html.erb within layouts/application
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/views/games/show.html.erb:19
+  Rendered games/show.html.erb within layouts/application (Duration: 3.4ms | Allocations: 786)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 29ms (Views: 23.4ms | ActiveRecord: 1.7ms | Allocations: 7582)
+
+
+Started GET "/game_sessions/1" for ::1 at 2020-03-05 11:03:02 -0600
+Processing by GameSessionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGameSession Load (0.2ms)[0m  [1m[34mSELECT "game_sessions".* FROM "game_sessions" WHERE "game_sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/game_sessions_controller.rb:7:in `show'
+  Rendering game_sessions/show.html.erb within layouts/application
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:3
+  [1m[36mGameTable Load (0.3ms)[0m  [1m[34mSELECT "game_tables".* FROM "game_tables" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" INNER JOIN "game_tables" ON "stores"."id" = "game_tables"."store_id" WHERE "game_tables"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/game_sessions/show.html.erb:5
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" INNER JOIN "game_sessions_players" ON "players"."id" = "game_sessions_players"."player_id" WHERE "game_sessions_players"."game_session_id" = ?[0m  [["game_session_id", 1]]
+  ↳ app/views/game_sessions/show.html.erb:9
+  Rendered game_sessions/show.html.erb within layouts/application (Duration: 23.6ms | Allocations: 3364)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_player'
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/layouts/application.html.erb:32
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  ↳ app/views/layouts/application.html.erb:42
+Completed 200 OK in 55ms (Views: 49.6ms | ActiveRecord: 2.0ms | Allocations: 10166)
+
+
