@@ -15,7 +15,7 @@
     <td><%= link_to session.game.name, game_path(session.game)%></td>
     <td><%= link_to session.store.name, store_path(session.store) %></td>
     <td><%= session.players.count%></td>
-    <td><%= session.date %></td>
+    <td><%= session.date.strftime("%a %b %e") %></td>
   </tr>
   <% end %>
 </table>

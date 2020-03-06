@@ -17,8 +17,8 @@ class GameSessionsController < ApplicationController
   #   if GameSession.all.include?(date: @game_session.date)
 
   def create
-    @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id], date: game_session_params[:date], time: game_session_params[:time])
-    if @game_session.game_sessions_in_date(game_session_params[:date]) && @game_session.game_session_on_table(game_session_params[:game_table])
+    @game_session = GameSession.new(session_name: game_session_params[:session_name], game_id: game_session_params[:game_id], game_table_id: game_session_params[:game_table_id], date: game_session_params[:date], time: game_session_params[:time]) 
+    if @game_session.game_session_collision(game_session_params[:date], game_session_params[:game_table_id])
       flash.alert = "That table is already taken"
       render :new
     else
@@ -52,7 +52,7 @@ class GameSessionsController < ApplicationController
     if !player_present? && is_table_space_available? 
       add_player
     else
-      
+    
     end
   end
 
@@ -74,6 +74,18 @@ class GameSessionsController < ApplicationController
   end
 
   private
+
+  def game_session_collision(date, game_table_id)
+    GameSession.where(date: date, game_table_id: game_table_id).count > 0
+  end
+
+  def game_sessions_in_date(date)
+    GameSession.all.detect{|session| session.date = date}
+  end
+
+  def game_session_on_table(table)
+      GameSession.all.detect{|session| session.game_table = table}
+  end
 
   def find_game_session
     @game_session = GameSession.find(params[:id])

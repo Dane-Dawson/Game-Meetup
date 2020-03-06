@@ -9,12 +9,14 @@ class GameSession < ApplicationRecord
     validates :game_table_id, presence: true
 
 
-    def game_sessions_in_date(date)
-        GameSession.all.detect{|session| session.date = date}
+    def self.game_sessions_in_date(game_date)
+        date_array = GameSession.all.collect{|session| session.date}
+        date_array.include?("game_date")
     end
 
-    def game_session_on_table(table)
-        GameSession.all.detect{|session| session.game_table = table}
+    def self.game_session_on_table(session_table)
+        table_array = GameSession.all.collect{|session| session.game_table_id}
+        table_array.include?(session_table)
     end
 
     def self.game_session_dates

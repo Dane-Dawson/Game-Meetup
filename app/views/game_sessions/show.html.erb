@@ -13,8 +13,13 @@
   </tr>
 </table>
 <br>
-
-
+<h2>
+        <% flash.each do |type, msg| %>
+            <div>
+                <%= msg %>
+            </div>
+        <% end %>
+</h2>
 <table align="center">
     <tr>
         <th><h6 align="center">There are currently <%= @game_session.game_table.seats_available - @game_session.players.count %> seats available for this game!</h6></th>
