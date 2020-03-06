@@ -26,6 +26,7 @@ class GameSessionsController < ApplicationController
         @game_session.save
         player = Player.find(session[:player_id])
         @game_session.players << player
+        @game_session.player_counter = 1
         @game_session.save
         redirect_to @game_session
       else
@@ -53,12 +54,11 @@ class GameSessionsController < ApplicationController
     else
       if player_present?
         flash.notice = "You already joined this game."
-        render :show
       end
       if is_table_space_available?
         flash.notice = "There is no more room on the table."
-        render :show
       end
+      render :show
     end
   end
 
