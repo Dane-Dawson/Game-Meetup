@@ -48,11 +48,17 @@ class GameSessionsController < ApplicationController
   end
 
   def update
-   
     if !player_present? && is_table_space_available? 
       add_player
     else
-    
+      if player_present?
+        flash.notice = "You already joined this game."
+        render :show
+      end
+      if is_table_space_available?
+        flash.notice = "There is no more room on the table."
+        render :show
+      end
     end
   end
 
