@@ -8,6 +8,9 @@ class GameSession < ApplicationRecord
     validates :game_id, presence: true
     validates :game_table_id, presence: true
 
+    def game_session_collision(date, game_table_id)
+        GameSession.where(date: date, game_table_id: game_table_id).count > 0
+    end
 
     def self.game_sessions_in_date(game_date)
         date_array = GameSession.all.collect{|session| session.date}
