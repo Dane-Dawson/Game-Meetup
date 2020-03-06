@@ -9,14 +9,16 @@ class GameSession < ApplicationRecord
     validates :game_table_id, presence: true
 
 
-    def self.game_sessions_in_date(date)
-        GameSession.all.select{|session| session.date = date}
+    def game_sessions_in_date(date)
+        GameSession.all.detect{|session| session.date = date}
+    end
+
+    def game_session_on_table(table)
+        GameSession.all.detect{|session| session.game_table = table}
     end
 
     def self.game_session_dates
         GameSession.all.collect.uniq(&:date)
     end
-
-    
 
 end

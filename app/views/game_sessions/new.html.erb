@@ -1,5 +1,12 @@
 <h1>Create a new game session</h1>
 <% if logged_in? %>
+
+        <% flash.each do |type, msg| %>
+            <div>
+                <%= msg %>
+            </div>
+        <% end %>
+
     <p><% if @game_session.errors.any? %>
     <p> Ya done messed up, check yo'self </p>
     <% @game_session.errors.full_messages.each do |m|%>
