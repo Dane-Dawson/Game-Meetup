@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
-  
+  get "/leaderboard", to: "stores#analytics"
   patch "/game_sessions", to: "game_sessions#add_player"#, as: "add_player"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
