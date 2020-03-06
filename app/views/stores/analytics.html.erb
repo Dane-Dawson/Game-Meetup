@@ -1,0 +1,11 @@
+<h1> Leader Board </h1>
+
+<p>Oldest player: <%= Player.oldest_player.name %> at <%= Player.oldest_player.age %> years old! </p>
+<p>Youngest player: <%= Player.youngest_player.name %> at <%= Player.youngest_player.age %> years old! </p>
+<p>Player with the most game sessions: <%= Player.most_sessions.name %> with <%= Player.most_sessions.game_sessions.count %> games scheduled.</p>
+<p>First player to join: <%= Player.first_to_join.name %> joined <%= Player.first_to_join.created_at.strftime("%a %b %e") %></p>
+<p>Game with the longest play time: <%= Game.longest_game.name %>, at a whopping <%= Game.longest_game.max_playtime %> minutes</p>
+<p>Game with the most sessions started: <%= Game.most_sessions.name %> currently being played in <%= Game.most_sessions.game_sessions.count %> sessions!</p>
+<p>Most popular game store: <%= Store.most_sessions.name %> leads the race with <%= Store.most_sessions.game_sessions.count %> tables booked!</p>
+<p>Player with most vowels in name: <%= Player.most_vowels.name %> has an astounding <%= Player.count_vowels(Player.most_vowels.name) %> vowels. Impressive!</p>
+
